@@ -4,14 +4,14 @@
     "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.ConsoleApp\\SpotifyRecom.ConsoleApp.csproj": {}
   },
   "projects": {
-    "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Classes\\SpotifyRecom.Classes.csproj": {
+    "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.ConsoleApp\\SpotifyRecom.ConsoleApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Classes\\SpotifyRecom.Classes.csproj",
-        "projectName": "SpotifyRecom.Classes",
-        "projectPath": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Classes\\SpotifyRecom.Classes.csproj",
+        "projectUniqueName": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.ConsoleApp\\SpotifyRecom.ConsoleApp.csproj",
+        "projectName": "SpotifyRecom.ConsoleApp",
+        "projectPath": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.ConsoleApp\\SpotifyRecom.ConsoleApp.csproj",
         "packagesPath": "C:\\Users\\Prog_Sis\\.nuget\\packages\\",
-        "outputPath": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Classes\\obj\\",
+        "outputPath": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.ConsoleApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Prog_Sis\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -26,7 +26,11 @@
           "net10.0": {
             "framework": "net10.0",
             "targetAlias": "net10.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "c:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj": {
+                "projectPath": "c:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -339,14 +343,14 @@
         }
       }
     },
-    "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.ConsoleApp\\SpotifyRecom.ConsoleApp.csproj": {
+    "c:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.ConsoleApp\\SpotifyRecom.ConsoleApp.csproj",
-        "projectName": "SpotifyRecom.ConsoleApp",
-        "projectPath": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.ConsoleApp\\SpotifyRecom.ConsoleApp.csproj",
+        "projectUniqueName": "c:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj",
+        "projectName": "SpotifyRecom.Model",
+        "projectPath": "c:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj",
         "packagesPath": "C:\\Users\\Prog_Sis\\.nuget\\packages\\",
-        "outputPath": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.ConsoleApp\\obj\\",
+        "outputPath": "c:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Model\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Prog_Sis\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -361,11 +365,7 @@
           "net10.0": {
             "framework": "net10.0",
             "targetAlias": "net10.0",
-            "projectReferences": {
-              "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Classes\\SpotifyRecom.Classes.csproj": {
-                "projectPath": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Classes\\SpotifyRecom.Classes.csproj"
-              }
-            }
+            "projectReferences": {}
           }
         },
         "warningProperties": {

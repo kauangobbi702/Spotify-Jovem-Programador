@@ -4,14 +4,14 @@
     "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Data\\SpotifyRecom.Data.csproj": {}
   },
   "projects": {
-    "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Classes\\SpotifyRecom.Classes.csproj": {
+    "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Data\\SpotifyRecom.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Classes\\SpotifyRecom.Classes.csproj",
-        "projectName": "SpotifyRecom.Classes",
-        "projectPath": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Classes\\SpotifyRecom.Classes.csproj",
+        "projectUniqueName": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Data\\SpotifyRecom.Data.csproj",
+        "projectName": "SpotifyRecom.Data",
+        "projectPath": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Data\\SpotifyRecom.Data.csproj",
         "packagesPath": "C:\\Users\\Prog_Sis\\.nuget\\packages\\",
-        "outputPath": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Classes\\obj\\",
+        "outputPath": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Prog_Sis\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -26,7 +26,11 @@
           "net10.0": {
             "framework": "net10.0",
             "targetAlias": "net10.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "c:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj": {
+                "projectPath": "c:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -45,6 +49,22 @@
         "net10.0": {
           "framework": "net10.0",
           "targetAlias": "net10.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.19, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.19, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -339,14 +359,14 @@
         }
       }
     },
-    "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Data\\SpotifyRecom.Data.csproj": {
+    "c:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Data\\SpotifyRecom.Data.csproj",
-        "projectName": "SpotifyRecom.Data",
-        "projectPath": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Data\\SpotifyRecom.Data.csproj",
+        "projectUniqueName": "c:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj",
+        "projectName": "SpotifyRecom.Model",
+        "projectPath": "c:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj",
         "packagesPath": "C:\\Users\\Prog_Sis\\.nuget\\packages\\",
-        "outputPath": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Data\\obj\\",
+        "outputPath": "c:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Model\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Prog_Sis\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -361,11 +381,7 @@
           "net10.0": {
             "framework": "net10.0",
             "targetAlias": "net10.0",
-            "projectReferences": {
-              "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Classes\\SpotifyRecom.Classes.csproj": {
-                "projectPath": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Classes\\SpotifyRecom.Classes.csproj"
-              }
-            }
+            "projectReferences": {}
           }
         },
         "warningProperties": {
@@ -384,18 +400,6 @@
         "net10.0": {
           "framework": "net10.0",
           "targetAlias": "net10.0",
-          "dependencies": {
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[9.0.19, )"
-            },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[9.0.19, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",

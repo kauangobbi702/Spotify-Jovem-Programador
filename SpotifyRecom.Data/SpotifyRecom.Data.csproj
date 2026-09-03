@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\SpotifyRecom.Classes\SpotifyRecom.Classes.csproj" />
+    <ProjectReference Include="..\SpotifyRecom.Model\SpotifyRecom.Model.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -10,6 +10,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="9.0.0" />
   </ItemGroup>
 
   <PropertyGroup>

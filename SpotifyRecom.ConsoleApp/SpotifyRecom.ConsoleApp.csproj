@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\SpotifyRecom.Classes\SpotifyRecom.Classes.csproj" />
+    <ProjectReference Include="..\SpotifyRecom.Model\SpotifyRecom.Model.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

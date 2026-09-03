@@ -2,28 +2,28 @@
   "version": 4,
   "targets": {
     "net10.0": {
-      "SpotifyRecom.Classes/1.0.0": {
+      "SpotifyRecom.Model/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "compile": {
-          "bin/placeholder/SpotifyRecom.Classes.dll": {}
+          "bin/placeholder/SpotifyRecom.Model.dll": {}
         },
         "runtime": {
-          "bin/placeholder/SpotifyRecom.Classes.dll": {}
+          "bin/placeholder/SpotifyRecom.Model.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "SpotifyRecom.Classes/1.0.0": {
+    "SpotifyRecom.Model/1.0.0": {
       "type": "project",
-      "path": "../SpotifyRecom.Classes/SpotifyRecom.Classes.csproj",
-      "msbuildProject": "../SpotifyRecom.Classes/SpotifyRecom.Classes.csproj"
+      "path": "../SpotifyRecom.Model/SpotifyRecom.Model.csproj",
+      "msbuildProject": "../SpotifyRecom.Model/SpotifyRecom.Model.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net10.0": [
-      "SpotifyRecom.Classes >= 1.0.0"
+      "SpotifyRecom.Model >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -52,8 +52,8 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {
-            "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Classes\\SpotifyRecom.Classes.csproj": {
-              "projectPath": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Classes\\SpotifyRecom.Classes.csproj"
+            "c:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj": {
+              "projectPath": "c:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj"
             }
           }
         }

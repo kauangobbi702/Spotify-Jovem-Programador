@@ -86,9 +86,10 @@ public sealed class ListagemEF
 
     public List<Midia> ListarMusicasDaPlaylist(int playlistId)
     {
-        return _context.Midias
+        return _context.MusicasPlaylists
             .AsNoTracking()
-            .Where(midia => midia.Playlists.Any(playlist => playlist.IdPlaylist == playlistId))
+            .Where(item => item.PlaylistId == playlistId)
+            .Select(item => item.Midia)
             .OrderBy(midia => midia.Titulo)
             .ToList();
     }

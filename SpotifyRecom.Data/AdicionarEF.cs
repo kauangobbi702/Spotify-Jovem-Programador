@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using SpotifyRecom.Model;
 
 namespace SpotifyRecom.Data;
@@ -13,11 +14,15 @@ public sealed class AdicionarEF
 
     public bool AdicionarUsuario(Usuario usuario)
     {
-        if (usuario is null || _context.Usuarios.Any(item => item.Email == usuario.Email))
+        if (usuario is null ||
+            usuario.Plano is null ||
+            _context.Usuarios.Any(item => item.Email == usuario.Email) ||
+            !_context.Planos.Any(plano => plano.IdPlano == usuario.Plano.IdPlano))
         {
             return false;
         }
 
+        _context.Entry(usuario.Plano).State = EntityState.Unchanged;
         _context.Usuarios.Add(usuario);
         _context.SaveChanges();
         return true;
@@ -81,7 +86,6 @@ public sealed class AdicionarEF
                 playlist.IdPlaylist == playlistId && playlist.UsuarioId == usuarioId) ||
             !_context.Midias.Any(midia => midia.IdMidia == midiaId) ||
             _context.MusicasPlaylists.Any(item =>
-                item.UsuarioId == usuarioId &&
                 item.PlaylistId == playlistId &&
                 item.MidiaId == midiaId))
         {

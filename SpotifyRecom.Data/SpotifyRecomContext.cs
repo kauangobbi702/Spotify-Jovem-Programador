@@ -69,6 +69,8 @@ public class SpotifyRecomContext : DbContext
         {
             entity.ToTable("MusicasPlaylists");
             entity.HasKey(musica => new { musica.UsuarioId, musica.MidiaId, musica.PlaylistId });
+            entity.HasIndex(musica => new { musica.PlaylistId, musica.MidiaId })
+                .IsUnique();
 
             entity.HasOne(musica => musica.Playlist)
                 .WithMany()

@@ -7,10 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Menu.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\SpotifyRecom.Data\SpotifyRecom.Data.csproj" />
+    <ProjectReference Include="..\SpotifyRecom.Model\SpotifyRecom.Model.csproj" />
   </ItemGroup>
 
 </Project>

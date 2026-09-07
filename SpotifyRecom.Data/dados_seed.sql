@@ -169,3 +169,125 @@ INSERT INTO planos (IdPlano, Descricao, Valor) VALUES
 	(1, "Gratuito", 00),
     (2, "Premium", 19.99),
     (3, "Premium família", 39.99);
+    
+START TRANSACTION;
+
+-- 1. Limpeza dos registros genéricos default criados pela migration inicial
+DELETE FROM `MusicaAtividade` WHERE AtividadeId = 1;
+DELETE FROM `MusicaEmocao` WHERE EmocaoId = 1;
+
+-- 2. Inserção das Relações em MusicaEmocao
+INSERT INTO `MusicaEmocao` (`MidiaId`, `EmocaoId`) VALUES
+-- Queen (Midias 1 a 9)
+(1, 7), (1, 3),        -- Death on Two Legs: Enfurecido, Energético
+(2, 2), (2, 5),        -- Love of My Life: Triste, Reflexivo
+(3, 5), (3, 3), (3, 1),-- Bohemian Rhapsody: Reflexivo, Energético, Alegre
+(4, 3), (4, 4),        -- We Will Rock You: Energético, Motivado
+(5, 4), (5, 1),        -- We Are the Champions: Motivado, Alegre
+(6, 4), (6, 5),        -- Spread Your Wings: Motivado, Reflexivo
+(7, 3), (7, 1),        -- Another One Bites the Dust: Energético, Alegre
+(8, 1), (8, 3),        -- Crazy Little Thing Called Love: Alegre, Energético
+(9, 2), (9, 5),        -- Save Me: Triste, Reflexivo
+
+-- Michael Jackson (Midias 10 a 18)
+(10, 1), (10, 3),      -- Don't Stop 'Til You Get Enough: Alegre, Energético
+(11, 1), (11, 6),      -- Rock with You: Alegre, Preguiçoso
+(12, 1), (12, 3),      -- Off the Wall: Alegre, Energético
+(13, 3), (13, 7),      -- Thriller: Energético, Enfurecido
+(14, 3), (14, 4), (14, 7), -- Beat It: Energético, Motivado, Enfurecido
+(15, 3), (15, 4),      -- Billie Jean: Energético, Motivado
+(16, 3), (16, 7),      -- Bad: Energético, Enfurecido
+(17, 1), (17, 3),      -- The Way You Make Me Feel: Alegre, Energético
+(18, 3), (18, 4),      -- Smooth Criminal: Energético, Motivado
+
+-- Caetano Veloso (Midias 19 a 27)
+(19, 5), (19, 2),      -- You Don't Know Me: Reflexivo, Triste
+(20, 1), (20, 5),      -- Nine Out of Ten: Alegre, Reflexivo
+(21, 5), (21, 2),      -- Triste Bahia: Reflexivo, Triste
+(22, 1), (22, 6), (22, 5), -- O Leãozinho: Alegre, Preguiçoso, Reflexivo
+(23, 5), (23, 1),      -- Tigresa: Reflexivo, Alegre
+(24, 5), (24, 4),      -- Gente: Reflexivo, Motivado
+(25, 1), (25, 4),      -- Lua de São Jorge: Alegre, Motivado
+(26, 5), (26, 2),      -- Oração ao Tempo: Reflexivo, Triste
+(27, 1), (27, 3),      -- Beleza Pura: Alegre, Energético
+
+-- Iron Maiden (Midias 28 a 36)
+(28, 3), (28, 4), (28, 7), -- Run to the Hills: Energético, Motivado, Enfurecido
+(29, 3), (29, 7),      -- The Number of the Beast: Energético, Enfurecido
+(30, 5), (30, 3), (30, 7), -- Hallowed Be Thy Name: Reflexivo, Energético, Enfurecido
+(31, 3), (31, 4),      -- Aces High: Energético, Motivado
+(32, 3), (32, 7),      -- 2 Minutes to Midnight: Energético, Enfurecido
+(33, 3), (33, 5),      -- Powerslave: Energético, Reflexivo
+(34, 3), (34, 7),      -- Be Quick or Be Dead: Energético, Enfurecido
+(35, 5), (35, 2),      -- Afraid to Shoot Strangers: Reflexivo, Triste
+(36, 3), (36, 4), (36, 7), -- Fear of the Dark: Energético, Motivado, Enfurecido
+
+-- Miles Davis (Midias 37 a 45)
+(37, 5), (37, 6),      -- So What: Reflexivo, Preguiçoso
+(38, 1), (38, 5),      -- Freddie Freeloader: Alegre, Reflexivo
+(39, 2), (39, 5), (39, 6), -- Blue in Green: Triste, Reflexivo, Preguiçoso
+(40, 5), (40, 3),      -- Pharaoh's Dance: Reflexivo, Energético
+(41, 5), (41, 7),      -- Bitches Brew: Reflexivo, Enfurecido
+(42, 5), (42, 3),      -- Spanish Key: Reflexivo, Energético
+(43, 5), (43, 2),      -- Concierto de Aranjuez: Reflexivo, Triste
+(44, 5), (44, 6),      -- Will O' the Wisp: Reflexivo, Preguiçoso
+(45, 5), (45, 1);      -- The Pan Piper: Reflexivo, Alegre
+
+-- 3. Inserção das Relações em MusicaAtividade
+INSERT INTO `MusicaAtividade` (`MidiaId`, `AtividadeId`) VALUES
+-- Queen (Midias 1 a 9)
+(1, 3), (1, 1),        -- Death on Two Legs: Jogando, Caminhando
+(2, 5), (2, 2),        -- Love of My Life: Relaxando, Cozinhando
+(3, 2), (3, 1), (3, 3),-- Bohemian Rhapsody: Cozinhando, Caminhando, Jogando
+(4, 1), (4, 3),        -- We Will Rock You: Caminhando, Jogando
+(5, 1), (5, 6),        -- We Are the Champions: Caminhando, Trabalhando
+(6, 4), (6, 1),        -- Spread Your Wings: Estudando, Caminhando
+(7, 1), (7, 3), (7, 2),-- Another One Bites the Dust: Caminhando, Jogando, Cozinhando
+(8, 2), (8, 1),        -- Crazy Little Thing Called Love: Cozinhando, Caminhando
+(9, 5), (9, 4),        -- Save Me: Relaxando, Estudando
+
+-- Michael Jackson (Midias 10 a 18)
+(10, 1), (10, 2),      -- Don't Stop 'Til You Get Enough: Caminhando, Cozinhando
+(11, 2), (11, 5),      -- Rock with You: Cozinhando, Relaxando
+(12, 1), (12, 3),      -- Off the Wall: Caminhando, Jogando
+(13, 3), (13, 1),      -- Thriller: Jogando, Caminhando
+(14, 1), (14, 3),      -- Beat It: Caminhando, Jogando
+(15, 1), (15, 3), (15, 6), -- Billie Jean: Caminhando, Jogando, Trabalhando
+(16, 1), (16, 3),      -- Bad: Caminhando, Jogando
+(17, 2), (17, 1),      -- The Way You Make Me Feel: Cozinhando, Caminhando
+(18, 3), (18, 1),      -- Smooth Criminal: Jogando, Caminhando
+
+-- Caetano Veloso (Midias 19 a 27)
+(19, 5), (19, 4),      -- You Don't Know Me: Relaxando, Estudando
+(20, 2), (20, 5),      -- Nine Out of Ten: Cozinhando, Relaxando
+(21, 4), (21, 5),      -- Triste Bahia: Estudando, Relaxando
+(22, 5), (22, 2), (22, 4), -- O Leãozinho: Relaxando, Cozinhando, Estudando
+(23, 2), (23, 6),      -- Tigresa: Cozinhando, Trabalhando
+(24, 4), (24, 6),      -- Gente: Estudando, Trabalhando
+(25, 2), (25, 1),      -- Lua de São Jorge: Cozinhando, Caminhando
+(26, 4), (26, 5),      -- Oração ao Tempo: Estudando, Relaxando
+(27, 2), (27, 1),      -- Beleza Pura: Cozinhando, Caminhando
+
+-- Iron Maiden (Midias 28 a 36)
+(28, 3), (28, 1),      -- Run to the Hills: Jogando, Caminhando
+(29, 3), (29, 1),      -- The Number of the Beast: Jogando, Caminhando
+(30, 3), (30, 4),      -- Hallowed Be Thy Name: Jogando, Estudando
+(31, 3), (31, 1),      -- Aces High: Jogando, Caminhando
+(32, 3), (32, 1),      -- 2 Minutes to Midnight: Jogando, Caminhando
+(33, 3), (33, 4),      -- Powerslave: Jogando, Estudando
+(34, 3), (34, 1),      -- Be Quick or Be Dead: Jogando, Caminhando
+(35, 4), (35, 5),      -- Afraid to Shoot Strangers: Estudando, Relaxando
+(36, 1), (36, 3), (36, 2), -- Fear of the Dark: Caminhando, Jogando, Cozinhando
+
+-- Miles Davis (Midias 37 a 45)
+(37, 4), (37, 6), (37, 5), -- So What: Estudando, Trabalhando, Relaxando
+(38, 2), (38, 6),      -- Freddie Freeloader: Cozinhando, Trabalhando
+(39, 4), (39, 5),      -- Blue in Green: Estudando, Relaxando
+(40, 6), (40, 4),      -- Pharaoh's Dance: Trabalhando, Estudando
+(41, 6), (41, 3),      -- Bitches Brew: Trabalhando, Jogando
+(42, 6), (42, 4),      -- Spanish Key: Trabalhando, Estudando
+(43, 5), (43, 4),      -- Concierto de Aranjuez: Relaxando, Estudando
+(44, 4), (44, 5),      -- Will O' the Wisp: Estudando, Relaxando
+(45, 5), (45, 2);      -- The Pan Piper: Relaxando, Cozinhando
+
+COMMIT;

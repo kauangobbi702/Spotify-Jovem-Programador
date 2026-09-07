@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ProjetoSpotifeiLive")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2c2db6c3872a0cabd3b30a368467c829e73d7d19")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0256b3bcc33347684b33c31e82ced258dff80bb3")]
 [assembly: System.Reflection.AssemblyProductAttribute("ProjetoSpotifeiLive")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ProjetoSpotifeiLive")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

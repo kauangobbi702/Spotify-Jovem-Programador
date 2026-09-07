@@ -1,0 +1,20 @@
+using System.Numerics;
+
+public class Midia
+{
+    public int IdMidia { get; private set; }
+    public string Titulo { get; private set; }
+    public List<Artista> Artistas { get; private set; }
+    public int ArtistaId { get; set; }
+    public Album Album { get; set; }
+    public int AlbumId { get; set; }
+    public TimeSpan Duracao { get; private set; }
+    public List<Genero> GenerosMidia { get; private set; }
+    public List<Playlist> Playlists { get; private set; }
+    public List<Biblioteca> Bibliotecas { get; set; }
+
+    public Midia (int id)
+    {
+        IdMidia = id;
+    }
+}

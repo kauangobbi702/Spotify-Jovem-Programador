@@ -1,0 +1,12 @@
+C:\workplace\ProjetoSpotifeiLive\SpotifyRecom.Model\obj\Debug\net10.0\SpotifyRecom.Model.GeneratedMSBuildEditorConfig.editorconfig
+C:\workplace\ProjetoSpotifeiLive\SpotifyRecom.Model\obj\Debug\net10.0\SpotifyRecom.Model.AssemblyInfoInputs.cache
+C:\workplace\ProjetoSpotifeiLive\SpotifyRecom.Model\obj\Debug\net10.0\SpotifyRecom.Model.AssemblyInfo.cs
+C:\workplace\ProjetoSpotifeiLive\SpotifyRecom.Model\obj\Debug\net10.0\SpotifyRecom.Model.csproj.CoreCompileInputs.cache
+C:\workplace\ProjetoSpotifeiLive\SpotifyRecom.Model\obj\Debug\net10.0\SpotifyRecom.Model.sourcelink.json
+C:\workplace\ProjetoSpotifeiLive\SpotifyRecom.Model\bin\Debug\net10.0\SpotifyRecom.Model.deps.json
+C:\workplace\ProjetoSpotifeiLive\SpotifyRecom.Model\bin\Debug\net10.0\SpotifyRecom.Model.dll
+C:\workplace\ProjetoSpotifeiLive\SpotifyRecom.Model\bin\Debug\net10.0\SpotifyRecom.Model.pdb
+C:\workplace\ProjetoSpotifeiLive\SpotifyRecom.Model\obj\Debug\net10.0\SpotifyRecom.Model.dll
+C:\workplace\ProjetoSpotifeiLive\SpotifyRecom.Model\obj\Debug\net10.0\refint\SpotifyRecom.Model.dll
+C:\workplace\ProjetoSpotifeiLive\SpotifyRecom.Model\obj\Debug\net10.0\SpotifyRecom.Model.pdb
+C:\workplace\ProjetoSpotifeiLive\SpotifyRecom.Model\obj\Debug\net10.0\ref\SpotifyRecom.Model.dll

@@ -1,4 +1,5 @@
-public class Album : Biblioteca
+namespace SpotifyRecom.Model;
+public class Album
 {
     public int IdAlbum { get; set; }
     public string Nome { get; set; }

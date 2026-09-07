@@ -2,6 +2,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SpotifyRecom.Model\SpotifyRecom.Model.csproj" />
+    <ProjectReference Include="..\SpotifyRecom.Data\SpotifyRecom.Data.csproj" />
+    <Compile Include="..\SpotifyRecom.Model\Menu.cs" Link="Menu.cs" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
   </ItemGroup>
 
   <PropertyGroup>

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\ProjetoSpotifeiLive.csproj": {}
+    "C:\\workplace\\ProjetoSpotifeiLive\\ProjetoSpotifeiLive.csproj": {}
   },
   "projects": {
-    "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\ProjetoSpotifeiLive.csproj": {
+    "C:\\workplace\\ProjetoSpotifeiLive\\ProjetoSpotifeiLive.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\ProjetoSpotifeiLive.csproj",
+        "projectUniqueName": "C:\\workplace\\ProjetoSpotifeiLive\\ProjetoSpotifeiLive.csproj",
         "projectName": "ProjetoSpotifeiLive",
-        "projectPath": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\ProjetoSpotifeiLive.csproj",
-        "packagesPath": "C:\\Users\\Prog_Sis\\.nuget\\packages\\",
-        "outputPath": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\obj\\",
+        "projectPath": "C:\\workplace\\ProjetoSpotifeiLive\\ProjetoSpotifeiLive.csproj",
+        "packagesPath": "C:\\Users\\Usuário\\.nuget\\packages\\",
+        "outputPath": "C:\\workplace\\ProjetoSpotifeiLive\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Prog_Sis\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Usuário\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -39,7 +39,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.300"
+        "SdkAnalysisLevel": "10.0.400"
       },
       "frameworks": {
         "net9.0": {
@@ -69,19 +69,15 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[9.0.18, 9.0.18]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[9.0.18, 9.0.18]"
+              "version": "[9.0.19, 9.0.19]"
             },
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[9.0.18, 9.0.18]"
+              "version": "[9.0.19, 9.0.19]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[9.0.18, 9.0.18]"
+              "version": "[9.0.19, 9.0.19]"
             }
           ],
           "frameworkReferences": {
@@ -89,7 +85,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.400/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

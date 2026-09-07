@@ -1,3 +1,4 @@
+namespace SpotifyRecom.Model;
 public class Plano
 {
     public int IdPlano { get; set; }

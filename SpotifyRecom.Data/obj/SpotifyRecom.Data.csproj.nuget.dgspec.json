@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Data\\SpotifyRecom.Data.csproj": {}
+    "C:\\workplace\\ProjetoSpotifeiLive\\SpotifyRecom.Data\\SpotifyRecom.Data.csproj": {}
   },
   "projects": {
-    "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Data\\SpotifyRecom.Data.csproj": {
+    "C:\\workplace\\ProjetoSpotifeiLive\\SpotifyRecom.Data\\SpotifyRecom.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Data\\SpotifyRecom.Data.csproj",
+        "projectUniqueName": "C:\\workplace\\ProjetoSpotifeiLive\\SpotifyRecom.Data\\SpotifyRecom.Data.csproj",
         "projectName": "SpotifyRecom.Data",
-        "projectPath": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Data\\SpotifyRecom.Data.csproj",
-        "packagesPath": "C:\\Users\\Prog_Sis\\.nuget\\packages\\",
-        "outputPath": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Data\\obj\\",
+        "projectPath": "C:\\workplace\\ProjetoSpotifeiLive\\SpotifyRecom.Data\\SpotifyRecom.Data.csproj",
+        "packagesPath": "C:\\Users\\Usuário\\.nuget\\packages\\",
+        "outputPath": "C:\\workplace\\ProjetoSpotifeiLive\\SpotifyRecom.Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Prog_Sis\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Usuário\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
@@ -27,8 +27,8 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "c:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj": {
-                "projectPath": "c:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj"
+              "C:\\workplace\\ProjetoSpotifeiLive\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj": {
+                "projectPath": "C:\\workplace\\ProjetoSpotifeiLive\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj"
               }
             }
           }
@@ -43,7 +43,7 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.300"
+        "SdkAnalysisLevel": "10.0.400"
       },
       "frameworks": {
         "net10.0": {
@@ -52,13 +52,13 @@
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[9.0.19, )"
+              "version": "[9.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.19, )"
+              "version": "[9.0.0, )"
             },
             "Pomelo.EntityFrameworkCore.MySql": {
               "target": "Package",
@@ -81,7 +81,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.302/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.400/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",
@@ -359,17 +359,17 @@
         }
       }
     },
-    "c:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj": {
+    "C:\\workplace\\ProjetoSpotifeiLive\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj",
+        "projectUniqueName": "C:\\workplace\\ProjetoSpotifeiLive\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj",
         "projectName": "SpotifyRecom.Model",
-        "projectPath": "c:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj",
-        "packagesPath": "C:\\Users\\Prog_Sis\\.nuget\\packages\\",
-        "outputPath": "c:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Model\\obj\\",
+        "projectPath": "C:\\workplace\\ProjetoSpotifeiLive\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj",
+        "packagesPath": "C:\\Users\\Usuário\\.nuget\\packages\\",
+        "outputPath": "C:\\workplace\\ProjetoSpotifeiLive\\SpotifyRecom.Model\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Prog_Sis\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Usuário\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
@@ -394,7 +394,7 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.300"
+        "SdkAnalysisLevel": "10.0.400"
       },
       "frameworks": {
         "net10.0": {
@@ -416,7 +416,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.302/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.400/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",

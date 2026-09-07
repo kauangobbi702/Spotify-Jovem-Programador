@@ -1,4 +1,4 @@
-using System.Numerics;
+namespace SpotifyRecom.Model;
 
 public class Midia
 {
@@ -12,6 +12,10 @@ public class Midia
     public List<Genero> GenerosMidia { get; private set; }
     public List<Playlist> Playlists { get; private set; }
     public List<Biblioteca> Bibliotecas { get; set; }
+
+    private Midia()
+    {
+    }
 
     public Midia (int id)
     {

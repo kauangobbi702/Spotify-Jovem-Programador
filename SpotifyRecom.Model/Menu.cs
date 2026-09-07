@@ -107,6 +107,7 @@ public sealed class Menu
             Console.WriteLine("2 - Artistas seguidos");
             Console.WriteLine("3 - Musicas curtidas");
             Console.WriteLine("4 - Playlists");
+            Console.WriteLine("5 - Mood Match");
             Console.WriteLine("0 - Sair da conta");
             Separador();
 
@@ -116,6 +117,7 @@ public sealed class Menu
                 case "2": ListarArtistasSeguidos(); break;
                 case "3": ListarMusicasCurtidas(); break;
                 case "4": MenuPlaylists(); break;
+                case "5": MenuMoodMatch(); break;
                 case "0": _usuarioLogado = null; break;
                 default: Pausar("Opcao invalida."); break;
             }
@@ -316,6 +318,117 @@ public sealed class Menu
                 default: Pausar("Opcao invalida."); break;
             }
         }
+    }
+
+    private void MenuMoodMatch()
+    {
+        Console.Clear();
+        Cabecalho("MOOD MATCH");
+        Console.WriteLine("Como voce esta se sentindo hoje?");
+        Console.WriteLine("1 - Alegre");
+        Console.WriteLine("2 - Triste");
+        Console.WriteLine("3 - Energetico");
+        Console.WriteLine("4 - Motivado");
+        Console.WriteLine("5 - Reflexivo");
+        Console.WriteLine("6 - Preguicoso");
+        Console.WriteLine("7 - Enfurecido");
+        Separador();
+        Console.Write("Digite o numero escolhido: ");
+
+        if (!int.TryParse(Console.ReadLine(), out var emocaoId) || emocaoId < 1 || emocaoId > 7)
+        {
+            Pausar("Emocao invalida.");
+            return;
+        }
+
+        Console.Clear();
+        Cabecalho("MOOD MATCH");
+        Console.WriteLine("O que voce esta fazendo agora?");
+        Console.WriteLine("1 - Caminhando");
+        Console.WriteLine("2 - Cozinhando");
+        Console.WriteLine("3 - Jogando");
+        Console.WriteLine("4 - Estudando");
+        Console.WriteLine("5 - Relaxando");
+        Console.WriteLine("6 - Trabalhando");
+        Separador();
+        Console.Write("Digite o numero escolhido: ");
+
+        if (!int.TryParse(Console.ReadLine(), out var atividadeId) || atividadeId < 1 || atividadeId > 6)
+        {
+            Pausar("Atividade invalida.");
+            return;
+        }
+
+        var musicas = _listagem.ListarMusicasPorMood(emocaoId, atividadeId);
+        Console.Clear();
+        Cabecalho("PLAYLIST SUGERIDA");
+        Console.WriteLine($"Emocao: {NomeEmocao(emocaoId)}");
+        Console.WriteLine($"Atividade: {NomeAtividade(atividadeId)}");
+        Console.WriteLine();
+        Mostrar(musicas.Select((musica, indice) =>
+            $"{indice + 1} - {musica.Titulo}"));
+
+        if (musicas.Count == 0)
+        {
+            Pausar("Nenhuma musica encontrada para essa combinacao.");
+            return;
+        }
+
+        Console.WriteLine();
+        Console.WriteLine("1 - Salvar playlist");
+        Console.WriteLine("0 - Voltar");
+        Separador();
+
+        if (Console.ReadLine() == "1")
+            SalvarPlaylistMood(musicas);
+    }
+
+    private void SalvarPlaylistMood(IReadOnlyList<Midia> musicas)
+    {
+        Console.Write("Digite o nome da playlist: ");
+        var nomePlaylist = Console.ReadLine() ?? string.Empty;
+        var playlist = _adicionar.AdicionarPlaylist(nomePlaylist, _usuarioLogado!.IdUsuario);
+
+        if (playlist is null)
+        {
+            Pausar("Nao foi possivel criar a playlist.");
+            return;
+        }
+
+        var musicasAdicionadas = musicas.Count(musica =>
+            _adicionar.AdicionarMusicaPlaylist(
+                _usuarioLogado.IdUsuario, playlist.IdPlaylist, musica.IdMidia));
+
+        Pausar($"Playlist '{playlist.NomePlaylist}' salva com {musicasAdicionadas} musica(s).");
+    }
+
+    private static string NomeEmocao(int emocaoId)
+    {
+        return emocaoId switch
+        {
+            1 => "Alegre",
+            2 => "Triste",
+            3 => "Energetico",
+            4 => "Motivado",
+            5 => "Reflexivo",
+            6 => "Preguicoso",
+            7 => "Enfurecido",
+            _ => "Desconhecida"
+        };
+    }
+
+    private static string NomeAtividade(int atividadeId)
+    {
+        return atividadeId switch
+        {
+            1 => "Caminhando",
+            2 => "Cozinhando",
+            3 => "Jogando",
+            4 => "Estudando",
+            5 => "Relaxando",
+            6 => "Trabalhando",
+            _ => "Desconhecida"
+        };
     }
 
     private void CriarPlaylist()

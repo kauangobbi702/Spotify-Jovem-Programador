@@ -93,4 +93,14 @@ public sealed class ListagemEF
             .OrderBy(midia => midia.Titulo)
             .ToList();
     }
+
+    public List<Midia> ListarMusicasPorMood(int emocaoId, int atividadeId)
+    {
+        return _context.Midias
+            .AsNoTracking()
+            .Where(midia => midia.MusicasEmocoes.Any(item => item.EmocaoId == emocaoId))
+            .Where(midia => midia.MusicasAtividades.Any(item => item.AtividadeId == atividadeId))
+            .OrderBy(midia => midia.Titulo)
+            .ToList();
+    }
 }

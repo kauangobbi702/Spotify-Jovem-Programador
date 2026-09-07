@@ -14,6 +14,10 @@ public class SpotifyRecomContext : DbContext
     public DbSet<MusicaCurtida> MusicasCurtidas { get; set; }
     public DbSet<ArtistaSeguido> ArtistasSeguidos { get; set; }
     public DbSet<MusicaPlaylist> MusicasPlaylists { get; set; }
+    public DbSet<Emocao> Emocoes { get; set; }
+    public DbSet<Atividade> Atividades { get; set; }
+    public DbSet<MusicaEmocao> MusicasEmocoes { get; set; }
+    public DbSet<MusicaAtividade> MusicasAtividades { get; set; }
 
     private readonly string StringConexao = "Server=localhost;Port=3306;Database=db_spotify_recomendacoes;Uid=root;Pwd=Sh1nobu-chan!;";
 
@@ -32,6 +36,28 @@ public class SpotifyRecomContext : DbContext
         modelBuilder.Entity<Midia>().HasKey(m => m.IdMidia);
         modelBuilder.Entity<Plano>().HasKey(p => p.IdPlano);
         modelBuilder.Entity<Playlist>().HasKey(p => p.IdPlaylist);
+        modelBuilder.Entity<Emocao>().HasKey(e => e.IdEmocao);
+        modelBuilder.Entity<Atividade>().HasKey(a => a.IdAtividade);
+
+        modelBuilder.Entity<MusicaEmocao>(entity =>
+        {
+            entity.ToTable("MusicaEmocao");
+            entity.HasKey(item => new { item.MidiaId, item.EmocaoId });
+            entity.HasOne(item => item.Midia).WithMany(midia => midia.MusicasEmocoes)
+                .HasForeignKey(item => item.MidiaId).OnDelete(DeleteBehavior.Cascade);
+            entity.HasOne(item => item.Emocao).WithMany(emocao => emocao.MusicasEmocoes)
+                .HasForeignKey(item => item.EmocaoId).OnDelete(DeleteBehavior.Cascade);
+        });
+
+        modelBuilder.Entity<MusicaAtividade>(entity =>
+        {
+            entity.ToTable("MusicaAtividade");
+            entity.HasKey(item => new { item.MidiaId, item.AtividadeId });
+            entity.HasOne(item => item.Midia).WithMany(midia => midia.MusicasAtividades)
+                .HasForeignKey(item => item.MidiaId).OnDelete(DeleteBehavior.Cascade);
+            entity.HasOne(item => item.Atividade).WithMany(atividade => atividade.MusicasAtividades)
+                .HasForeignKey(item => item.AtividadeId).OnDelete(DeleteBehavior.Cascade);
+        });
 
         modelBuilder.Entity<MusicaCurtida>(entity =>
         {

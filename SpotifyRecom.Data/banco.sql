@@ -635,5 +635,419 @@ DELIMITER ;
 CALL MigrationsScript();
 DROP PROCEDURE MigrationsScript;
 
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20260907165035_ImpedirMusicasDuplicadasNaPlaylist') THEN
+
+    CREATE UNIQUE INDEX `IX_MusicasPlaylists_PlaylistId_MidiaId` ON `MusicasPlaylists` (`PlaylistId`, `MidiaId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20260907165035_ImpedirMusicasDuplicadasNaPlaylist') THEN
+
+    INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
+    VALUES ('20260907165035_ImpedirMusicasDuplicadasNaPlaylist', '9.0.0');
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20260907183640_AdicionandoMoodMatch') THEN
+
+    ALTER TABLE `Midias` ADD `AtividadeId` int NOT NULL DEFAULT 0;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20260907183640_AdicionandoMoodMatch') THEN
+
+    ALTER TABLE `Midias` ADD `EmocaoId` int NOT NULL DEFAULT 0;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20260907183640_AdicionandoMoodMatch') THEN
+
+    CREATE TABLE `Atividades` (
+        `IdAtividade` int NOT NULL AUTO_INCREMENT,
+        `Nome` longtext CHARACTER SET utf8mb4 NOT NULL,
+        CONSTRAINT `PK_Atividades` PRIMARY KEY (`IdAtividade`)
+    ) CHARACTER SET=utf8mb4;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20260907183640_AdicionandoMoodMatch') THEN
+
+    CREATE TABLE `Emocoes` (
+        `IdEmocao` int NOT NULL AUTO_INCREMENT,
+        `Nome` longtext CHARACTER SET utf8mb4 NOT NULL,
+        CONSTRAINT `PK_Emocoes` PRIMARY KEY (`IdEmocao`)
+    ) CHARACTER SET=utf8mb4;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20260907183640_AdicionandoMoodMatch') THEN
+
+    INSERT INTO `Atividades` (`IdAtividade`, `Nome`)
+    VALUES (1, 'Caminhando'),
+    (2, 'Cozinhando'),
+    (3, 'Jogando'),
+    (4, 'Estudando'),
+    (5, 'Relaxando'),
+    (6, 'Trabalhando');
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20260907183640_AdicionandoMoodMatch') THEN
+
+    INSERT INTO `Emocoes` (`IdEmocao`, `Nome`)
+    VALUES (1, 'Alegre'),
+    (2, 'Triste'),
+    (3, 'Energetico'),
+    (4, 'Motivado'),
+    (5, 'Reflexivo'),
+    (6, 'Preguicoso'),
+    (7, 'Enfurecido');
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20260907183640_AdicionandoMoodMatch') THEN
+
+    UPDATE `Midias` SET `AtividadeId` = 1, `EmocaoId` = 1 WHERE `AtividadeId` = 0 OR `EmocaoId` = 0;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20260907183640_AdicionandoMoodMatch') THEN
+
+    CREATE INDEX `IX_Midias_AtividadeId` ON `Midias` (`AtividadeId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20260907183640_AdicionandoMoodMatch') THEN
+
+    CREATE INDEX `IX_Midias_EmocaoId` ON `Midias` (`EmocaoId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20260907183640_AdicionandoMoodMatch') THEN
+
+    ALTER TABLE `Midias` ADD CONSTRAINT `FK_Midias_Atividades_AtividadeId` FOREIGN KEY (`AtividadeId`) REFERENCES `Atividades` (`IdAtividade`) ON DELETE RESTRICT;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20260907183640_AdicionandoMoodMatch') THEN
+
+    ALTER TABLE `Midias` ADD CONSTRAINT `FK_Midias_Emocoes_EmocaoId` FOREIGN KEY (`EmocaoId`) REFERENCES `Emocoes` (`IdEmocao`) ON DELETE RESTRICT;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20260907183640_AdicionandoMoodMatch') THEN
+
+    INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
+    VALUES ('20260907183640_AdicionandoMoodMatch', '9.0.0');
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20260907185127_CriarRelacionamentosMoodMatch') THEN
+
+    CREATE TABLE `MusicaAtividade` (
+        `MidiaId` int NOT NULL,
+        `AtividadeId` int NOT NULL,
+        CONSTRAINT `PK_MusicaAtividade` PRIMARY KEY (`MidiaId`, `AtividadeId`),
+        CONSTRAINT `FK_MusicaAtividade_Atividades_AtividadeId` FOREIGN KEY (`AtividadeId`) REFERENCES `Atividades` (`IdAtividade`) ON DELETE CASCADE,
+        CONSTRAINT `FK_MusicaAtividade_Midias_MidiaId` FOREIGN KEY (`MidiaId`) REFERENCES `Midias` (`IdMidia`) ON DELETE CASCADE
+    ) CHARACTER SET=utf8mb4;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20260907185127_CriarRelacionamentosMoodMatch') THEN
+
+    CREATE TABLE `MusicaEmocao` (
+        `MidiaId` int NOT NULL,
+        `EmocaoId` int NOT NULL,
+        CONSTRAINT `PK_MusicaEmocao` PRIMARY KEY (`MidiaId`, `EmocaoId`),
+        CONSTRAINT `FK_MusicaEmocao_Emocoes_EmocaoId` FOREIGN KEY (`EmocaoId`) REFERENCES `Emocoes` (`IdEmocao`) ON DELETE CASCADE,
+        CONSTRAINT `FK_MusicaEmocao_Midias_MidiaId` FOREIGN KEY (`MidiaId`) REFERENCES `Midias` (`IdMidia`) ON DELETE CASCADE
+    ) CHARACTER SET=utf8mb4;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20260907185127_CriarRelacionamentosMoodMatch') THEN
+
+    CREATE INDEX `IX_MusicaAtividade_AtividadeId` ON `MusicaAtividade` (`AtividadeId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20260907185127_CriarRelacionamentosMoodMatch') THEN
+
+    CREATE INDEX `IX_MusicaEmocao_EmocaoId` ON `MusicaEmocao` (`EmocaoId`);
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20260907185127_CriarRelacionamentosMoodMatch') THEN
+
+    INSERT INTO `MusicaAtividade` (`MidiaId`, `AtividadeId`) SELECT `IdMidia`, `AtividadeId` FROM `Midias` WHERE `AtividadeId` <> 0;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20260907185127_CriarRelacionamentosMoodMatch') THEN
+
+    INSERT INTO `MusicaEmocao` (`MidiaId`, `EmocaoId`) SELECT `IdMidia`, `EmocaoId` FROM `Midias` WHERE `EmocaoId` <> 0;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20260907185127_CriarRelacionamentosMoodMatch') THEN
+
+    ALTER TABLE `Midias` DROP FOREIGN KEY `FK_Midias_Atividades_AtividadeId`;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20260907185127_CriarRelacionamentosMoodMatch') THEN
+
+    ALTER TABLE `Midias` DROP FOREIGN KEY `FK_Midias_Emocoes_EmocaoId`;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20260907185127_CriarRelacionamentosMoodMatch') THEN
+
+    ALTER TABLE `Midias` DROP INDEX `IX_Midias_AtividadeId`;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20260907185127_CriarRelacionamentosMoodMatch') THEN
+
+    ALTER TABLE `Midias` DROP INDEX `IX_Midias_EmocaoId`;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20260907185127_CriarRelacionamentosMoodMatch') THEN
+
+    ALTER TABLE `Midias` DROP COLUMN `AtividadeId`;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20260907185127_CriarRelacionamentosMoodMatch') THEN
+
+    ALTER TABLE `Midias` DROP COLUMN `EmocaoId`;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20260907185127_CriarRelacionamentosMoodMatch') THEN
+
+    INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
+    VALUES ('20260907185127_CriarRelacionamentosMoodMatch', '9.0.0');
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
 COMMIT;
 

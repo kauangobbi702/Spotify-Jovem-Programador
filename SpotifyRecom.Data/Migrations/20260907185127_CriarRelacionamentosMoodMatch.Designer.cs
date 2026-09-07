@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpotifyRecom.Data;
 
@@ -11,9 +12,11 @@ using SpotifyRecom.Data;
 namespace SpotifyRecom.Data.Migrations
 {
     [DbContext(typeof(SpotifyRecomContext))]
-    partial class SpotifyRecomContextModelSnapshot : ModelSnapshot
+    [Migration("20260907185127_CriarRelacionamentosMoodMatch")]
+    partial class CriarRelacionamentosMoodMatch
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

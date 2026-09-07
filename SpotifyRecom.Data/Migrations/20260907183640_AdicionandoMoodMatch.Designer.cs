@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpotifyRecom.Data;
 
@@ -11,9 +12,11 @@ using SpotifyRecom.Data;
 namespace SpotifyRecom.Data.Migrations
 {
     [DbContext(typeof(SpotifyRecomContext))]
-    partial class SpotifyRecomContextModelSnapshot : ModelSnapshot
+    [Migration("20260907183640_AdicionandoMoodMatch")]
+    partial class AdicionandoMoodMatch
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -269,8 +272,14 @@ namespace SpotifyRecom.Data.Migrations
                     b.Property<int>("ArtistaId")
                         .HasColumnType("int");
 
+                    b.Property<int>("AtividadeId")
+                        .HasColumnType("int");
+
                     b.Property<TimeSpan>("Duracao")
                         .HasColumnType("time(6)");
+
+                    b.Property<int>("EmocaoId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Titulo")
                         .IsRequired()
@@ -280,22 +289,11 @@ namespace SpotifyRecom.Data.Migrations
 
                     b.HasIndex("AlbumId");
 
-                    b.ToTable("Midias");
-                });
-
-            modelBuilder.Entity("SpotifyRecom.Model.MusicaAtividade", b =>
-                {
-                    b.Property<int>("MidiaId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("AtividadeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("MidiaId", "AtividadeId");
-
                     b.HasIndex("AtividadeId");
 
-                    b.ToTable("MusicaAtividade", (string)null);
+                    b.HasIndex("EmocaoId");
+
+                    b.ToTable("Midias");
                 });
 
             modelBuilder.Entity("SpotifyRecom.Model.MusicaCurtida", b =>
@@ -311,21 +309,6 @@ namespace SpotifyRecom.Data.Migrations
                     b.HasIndex("MidiaId");
 
                     b.ToTable("MusicasCurtidas", (string)null);
-                });
-
-            modelBuilder.Entity("SpotifyRecom.Model.MusicaEmocao", b =>
-                {
-                    b.Property<int>("MidiaId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("EmocaoId")
-                        .HasColumnType("int");
-
-                    b.HasKey("MidiaId", "EmocaoId");
-
-                    b.HasIndex("EmocaoId");
-
-                    b.ToTable("MusicaEmocao", (string)null);
                 });
 
             modelBuilder.Entity("SpotifyRecom.Model.MusicaPlaylist", b =>
@@ -564,26 +547,23 @@ namespace SpotifyRecom.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Album");
-                });
-
-            modelBuilder.Entity("SpotifyRecom.Model.MusicaAtividade", b =>
-                {
                     b.HasOne("SpotifyRecom.Model.Atividade", "Atividade")
-                        .WithMany("MusicasAtividades")
+                        .WithMany("Midias")
                         .HasForeignKey("AtividadeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("SpotifyRecom.Model.Midia", "Midia")
-                        .WithMany("MusicasAtividades")
-                        .HasForeignKey("MidiaId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                    b.HasOne("SpotifyRecom.Model.Emocao", "Emocao")
+                        .WithMany("Midias")
+                        .HasForeignKey("EmocaoId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Album");
 
                     b.Navigation("Atividade");
 
-                    b.Navigation("Midia");
+                    b.Navigation("Emocao");
                 });
 
             modelBuilder.Entity("SpotifyRecom.Model.MusicaCurtida", b =>
@@ -603,25 +583,6 @@ namespace SpotifyRecom.Data.Migrations
                     b.Navigation("Midia");
 
                     b.Navigation("Usuario");
-                });
-
-            modelBuilder.Entity("SpotifyRecom.Model.MusicaEmocao", b =>
-                {
-                    b.HasOne("SpotifyRecom.Model.Emocao", "Emocao")
-                        .WithMany("MusicasEmocoes")
-                        .HasForeignKey("EmocaoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SpotifyRecom.Model.Midia", "Midia")
-                        .WithMany("MusicasEmocoes")
-                        .HasForeignKey("MidiaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Emocao");
-
-                    b.Navigation("Midia");
                 });
 
             modelBuilder.Entity("SpotifyRecom.Model.MusicaPlaylist", b =>
@@ -680,19 +641,12 @@ namespace SpotifyRecom.Data.Migrations
 
             modelBuilder.Entity("SpotifyRecom.Model.Atividade", b =>
                 {
-                    b.Navigation("MusicasAtividades");
+                    b.Navigation("Midias");
                 });
 
             modelBuilder.Entity("SpotifyRecom.Model.Emocao", b =>
                 {
-                    b.Navigation("MusicasEmocoes");
-                });
-
-            modelBuilder.Entity("SpotifyRecom.Model.Midia", b =>
-                {
-                    b.Navigation("MusicasAtividades");
-
-                    b.Navigation("MusicasEmocoes");
+                    b.Navigation("Midias");
                 });
 
             modelBuilder.Entity("SpotifyRecom.Model.Plano", b =>

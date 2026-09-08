@@ -1,6 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <ProjectReference Include="..\SpotifyRecom.Business\SpotifyRecom.Business.csproj" />
     <ProjectReference Include="..\SpotifyRecom.Model\SpotifyRecom.Model.csproj" />
     <ProjectReference Include="..\SpotifyRecom.Data\SpotifyRecom.Data.csproj" />
     <Compile Include="..\SpotifyRecom.Model\Menu.cs" Link="Menu.cs" />

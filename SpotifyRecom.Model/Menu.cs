@@ -1,3 +1,6 @@
+using System.Diagnostics;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.Identity.Client;
 using SpotifyRecom.Business;
 using SpotifyRecom.Business.Excecoes;
 using SpotifyRecom.Data;
@@ -28,12 +31,13 @@ public sealed class Menu
         _playlistBusiness = new PlaylistBusiness(_adicionar, _remover);
     }
 
+    #region MENUS - ENTRADA
     public void Iniciar()
     {
         while (true)
         {
             Console.Clear();
-            Cabecalho("BEM-VINDO AO SPOTIFEI");
+            Cabecalho("BEM-VINDO AO SPOTIFEI", "MENU");
             Console.WriteLine("1 - Entrar");
             Console.WriteLine("2 - Criar conta");
             Console.WriteLine("0 - Sair");
@@ -52,7 +56,7 @@ public sealed class Menu
     private void Entrar()
     {
         Console.Clear();
-        Cabecalho("ENTRAR");
+        Cabecalho("ENTRAR", "LOGIN");
         Console.Write("E-mail: ");
         var email = Console.ReadLine() ?? string.Empty;
         Console.Write("Senha: ");
@@ -74,7 +78,7 @@ public sealed class Menu
     private void CadastrarUsuario()
     {
         Console.Clear();
-        Cabecalho("CRIAR CONTA");
+        Cabecalho("CRIAR CONTA", "CADASTRO");
         Console.Write("Nome: ");
         var nome = Console.ReadLine() ?? string.Empty;
         Console.Write("E-mail: ");
@@ -119,7 +123,7 @@ public sealed class Menu
         while (_usuarioLogado is not null)
         {
             Console.Clear();
-            Cabecalho($"BEM-VINDO, {_usuarioLogado.Nome.ToUpperInvariant()}!");
+            Cabecalho($"BEM-VINDO, {_usuarioLogado.Nome.ToUpperInvariant()}!", "MENU");
             Console.WriteLine("1 - Artistas");
             Console.WriteLine("2 - Artistas seguidos");
             Console.WriteLine("3 - Músicas curtidas");
@@ -141,10 +145,16 @@ public sealed class Menu
         }
     }
 
+    #endregion
+
+
+
+
+    #region SUBMENU
     private void MenuArtistas()
     {
         Console.Clear();
-        Cabecalho("ARTISTAS");
+        Cabecalho("ARTISTAS", "MENU");
         var artistas = _listagem.ListarTodosArtistas();
         Mostrar(artistas.Select((artista, indice) =>
             $"{indice + 1} - {artista.Nome}"));
@@ -161,7 +171,7 @@ public sealed class Menu
 
         var artista = artistas[escolha - 1];
         Console.Clear();
-        Cabecalho($"ARTISTA: {artista.Nome.ToUpperInvariant()}");
+        Cabecalho($"ARTISTA: {artista.Nome.ToUpperInvariant()}", "MENU");
         Console.WriteLine("1 - Ver álbuns e músicas");
         Console.WriteLine("2 - Seguir artista");
         Console.WriteLine("0 - Voltar");
@@ -183,11 +193,172 @@ public sealed class Menu
                 break;
         }
     }
+    private void MenuPlaylists()
+    {
+        while (true)
+        {
+            Console.Clear();
+            Cabecalho("PLAYLISTS", "MENU");
+            var playlists = _listagem.ListarPlaylists(_usuarioLogado!.IdUsuario);
+            Mostrar(playlists.Select(playlist =>
+                $"ID: {playlist.IdPlaylist} - {playlist.NomePlaylist}"));
+            Console.WriteLine();
+            Console.WriteLine("1 - Criar playlist");
+            Console.WriteLine("2 - Ver playlist");
+            Console.WriteLine("3 - Remover playlist");
+            Console.WriteLine("0 - Voltar");
+            Separador();
 
-    private void VerAlbunsEMusicas(int artistaId, string nomeArtista)
+            switch (Console.ReadLine())
+            {
+                case "1": CriarPlaylist(); break;
+                case "2": VerPlaylist(playlists); break;
+                case "3": RemoverPlaylist(playlists); break;
+                case "0": return;
+                default: Pausar("Opção inválida."); break;
+            }
+        }
+    }
+
+    private void MenuMoodMatch()
     {
         Console.Clear();
-        Cabecalho($"ÁLBUNS E MÚSICAS DE {nomeArtista.ToUpperInvariant()}");
+        Cabecalho("MOOD MATCH", "SENTIMENTO");
+        Console.WriteLine("Como você está se sentindo hoje?");
+        Console.WriteLine("1 - Alegre");
+        Console.WriteLine("2 - Triste");
+        Console.WriteLine("3 - Energetico");
+        Console.WriteLine("4 - Motivado");
+        Console.WriteLine("5 - Reflexivo");
+        Console.WriteLine("6 - Preguicoso");
+        Console.WriteLine("7 - Enfurecido");
+        Separador();
+        Console.Write("Digite o número escolhido: ");
+
+        if (!int.TryParse(Console.ReadLine(), out var emocaoId) || emocaoId < 1 || emocaoId > 7)
+        {
+            Pausar("Emoção inválida.");
+            return;
+        }
+
+        Console.Clear();
+        Cabecalho("MOOD MATCH", "ATIVIDADE");
+        Console.WriteLine("O que você está fazendo agora?");
+        Console.WriteLine("1 - Caminhando");
+        Console.WriteLine("2 - Cozinhando");
+        Console.WriteLine("3 - Jogando");
+        Console.WriteLine("4 - Estudando");
+        Console.WriteLine("5 - Relaxando");
+        Console.WriteLine("6 - Trabalhando");
+        Separador();
+        Console.Write("Digite o número escolhido: ");
+
+        if (!int.TryParse(Console.ReadLine(), out var atividadeId) || atividadeId < 1 || atividadeId > 6)
+        {
+            Pausar("Atividade inválida.");
+            return;
+        }
+
+        var musicas = _listagem.ListarMusicasPorMood(emocaoId, atividadeId);
+        Console.Clear();
+        Cabecalho("PLAYLIST SUGERIDA", "MOOD MATCH");
+        Console.WriteLine($"Emoção: {NomeEmocao(emocaoId)}");
+        Console.WriteLine($"Atividade: {NomeAtividade(atividadeId)}");
+        Console.WriteLine();
+        Mostrar(musicas.Select((musica, indice) =>
+            $"{indice + 1} - {musica.Titulo}"));
+
+        if (musicas.Count == 0)
+        {
+            Pausar("Nenhuma música encontrada para essa combinação.");
+            return;
+        }
+
+        Console.WriteLine();
+        Console.WriteLine("1 - Salvar playlist");
+        Console.WriteLine("0 - Voltar");
+        Separador();
+
+        if (Console.ReadLine() == "1")
+            SalvarPlaylistMood(musicas);
+    }
+
+    #endregion
+
+
+
+
+
+    #region DISPLAY MUSICA
+    private void TocarMusicasPlayList(List<Midia> musicasPlaylist)
+    {
+        for (int indice = 0; indice < musicasPlaylist.Count;)
+        {
+
+            if (indice < 0)
+            {
+                Destaque("Não há músicas anteriores nesta PlayList.", ConsoleColor.DarkRed);
+                Console.WriteLine();
+                indice++;
+                Console.Clear();
+                continue;
+            }
+            Console.Clear();
+            Midia midia = musicasPlaylist[indice];
+
+            ConsoleKey resultado = DisplayMusica(midia.Duracao, midia.Titulo, midia.IdMidia);
+
+            switch (resultado)
+            {
+                case ConsoleKey.LeftArrow:
+                    indice--;
+                    break;
+
+                case ConsoleKey.RightArrow:
+                    indice++;
+                    continue;
+            }
+        }
+    }
+
+    private ConsoleKey DisplayMusica(TimeSpan duracao, string titulo, int id)
+    {
+        Cabecalho(titulo, Convert.ToString(id));
+        Console.WriteLine(titulo, "⏱" + duracao + "\n");
+        Console.WriteLine("|⫷      ᐅ     ⫸|");
+
+        Stopwatch cronometro = Stopwatch.StartNew();
+
+        while (cronometro.Elapsed < duracao)
+        {
+            if (Console.KeyAvailable)
+            {
+                ConsoleKey tecla = Console.ReadKey(true).Key;
+
+                if (tecla == ConsoleKey.LeftArrow)
+                    return ConsoleKey.LeftArrow;
+
+                if (tecla == ConsoleKey.RightArrow)
+                    return ConsoleKey.RightArrow;
+            }
+
+            Thread.Sleep(50);
+        }
+
+        return ConsoleKey.RightArrow;
+    }
+
+    #endregion
+
+
+
+
+    #region LISTAGENS
+    private void VerAlbunsEMusicas(int artistaId, string nomeArtista)
+    {
+        List<Midia> midias = new List<Midia>();
+        Console.Clear();
+        Cabecalho($"ÁLBUNS E MÚSICAS ", $"{nomeArtista.ToUpperInvariant()}");
         var albuns = _listagem.ListarAlbunsDoArtista(artistaId);
         if (albuns.Count == 0)
         {
@@ -200,6 +371,11 @@ public sealed class Menu
             Console.WriteLine();
             Console.WriteLine($"Album: {album.Nome}");
             var musicas = _listagem.ListarMusicasDoAlbum(album.IdAlbum);
+            for (int indice = 0; indice < musicas.Count; indice++)
+            {
+                midias.Add(musicas[indice]);
+            }
+
             Mostrar(musicas.Select(musica =>
                 $"  ID {musica.IdMidia} - {musica.Titulo}"));
         }
@@ -207,17 +383,20 @@ public sealed class Menu
         Console.WriteLine();
         Console.WriteLine("1 - Curtir música");
         Console.WriteLine("2 - Adicionar música à playlist");
-        Console.WriteLine("3 - Voltar");
+        Console.WriteLine($"3 - Tocar {nomeArtista.ToUpperInvariant()}");
+        Console.WriteLine("4 - Voltar");
         Separador();
 
         switch (Console.ReadLine())
         {
             case "1": CurtirMusica(artistaId); break;
             case "2": AdicionarMusicaAPlaylist(artistaId); break;
-            case "3": return;
+            case "3": TocarMusicasPlayList(midias); break;
+            case "4": return;
             default: Pausar("Opção inválida."); break;
         }
     }
+
 
     private void CurtirMusica(int artistaId)
     {
@@ -242,6 +421,144 @@ public sealed class Menu
         }
     }
 
+    private void ListarArtistasSeguidos()
+    {
+        Console.Clear();
+        Cabecalho("ARTISTAS", "SEGUIDOS");
+        var artistas = _listagem.ListarArtistasSeguidos(_usuarioLogado!.IdUsuario);
+        Mostrar(artistas.Select((artista, indice) =>
+            $"{indice + 1} - {artista.Nome}"));
+        Separador();
+        Console.Write("Escolha um artista (0 para voltar): ");
+        if (!int.TryParse(Console.ReadLine(), out var escolha) || escolha == 0)
+            return;
+        if (escolha < 1 || escolha > artistas.Count)
+        {
+            Pausar("Artista inválido.");
+            return;
+        }
+
+        var artista = artistas[escolha - 1];
+        Console.Clear();
+        Cabecalho($"ARTISTA: {artista.Nome.ToUpperInvariant()}", "MENU");
+        Console.WriteLine("1 - Visitar página do artista");
+        Console.WriteLine("2 - Deixar de seguir o artista");
+        Console.WriteLine("0 - Voltar");
+        Separador();
+
+        switch (Console.ReadLine())
+        {
+            case "1": VerAlbunsEMusicas(artista.IdArtista, artista.Nome); break;
+            case "2":
+                try
+                {
+                    _artistaBusiness.DeixarDeSeguirArtista(_usuarioLogado.IdUsuario, artista.IdArtista);
+                    Pausar("Você deixou de seguir o artista.");
+                }
+                catch (NegocioException excecao)
+                {
+                    Pausar(excecao.Message);
+                }
+                break;
+        }
+    }
+
+    private void ListarMusicasCurtidas()
+    {
+        Console.Clear();
+        Cabecalho("MÚSICAS", "CURTIDAS");
+        var musicas = _listagem.ListarMusicasCurtidas(_usuarioLogado!.IdUsuario);
+        Mostrar(musicas.Select((musica, indice) =>
+            $"{indice + 1} - {musica.Titulo} (ID: {musica.IdMidia})"));
+        Separador();
+        Console.Write("ID da música para deixar de curtir (0 para voltar): ");
+        if (int.TryParse(Console.ReadLine(), out var midiaId) && midiaId != 0)
+        {
+            try
+            {
+                _artistaBusiness.DescurtirMusica(_usuarioLogado.IdUsuario, midiaId);
+            }
+            catch (NegocioException excecao)
+            {
+                Console.WriteLine(excecao.Message);
+            }
+        }
+        Pausar();
+    }
+    #endregion
+
+
+
+
+    #region MOOD MATCH
+    private static string NomeEmocao(int emocaoId)
+    {
+        return emocaoId switch
+        {
+            1 => "Alegre",
+            2 => "Triste",
+            3 => "Energetico",
+            4 => "Motivado",
+            5 => "Reflexivo",
+            6 => "Preguicoso",
+            7 => "Enfurecido",
+            _ => "Desconhecida"
+        };
+    }
+
+    private static string NomeAtividade(int atividadeId)
+    {
+        return atividadeId switch
+        {
+            1 => "Caminhando",
+            2 => "Cozinhando",
+            3 => "Jogando",
+            4 => "Estudando",
+            5 => "Relaxando",
+            6 => "Trabalhando",
+            _ => "Desconhecida"
+        };
+    }
+
+    private void SalvarPlaylistMood(IReadOnlyList<Midia> musicas)
+    {
+        Console.Write("Digite o nome da playlist: ");
+        var nomePlaylist = Console.ReadLine() ?? string.Empty;
+
+        Playlist playlist;
+        try
+        {
+            playlist = _playlistBusiness.CriarPlaylist(nomePlaylist, _usuarioLogado!.IdUsuario);
+        }
+        catch (NegocioException excecao)
+        {
+            Pausar(excecao.Message);
+            return;
+        }
+
+        var musicasAdicionadas = 0;
+        foreach (var musica in musicas)
+        {
+            try
+            {
+                _playlistBusiness.AdicionarMusica(_usuarioLogado.IdUsuario, playlist.IdPlaylist, musica.IdMidia);
+                musicasAdicionadas++;
+            }
+            catch (NegocioException)
+            {
+
+            }
+        }
+
+        Pausar($"Playlist '{playlist.NomePlaylist}' salva com {musicasAdicionadas} música(s).");
+    }
+
+    #endregion
+
+
+
+
+    #region PLAYLIST
     private void AdicionarMusicaAPlaylist(int artistaId)
     {
         var musicas = _listagem.ListarMusicasDoArtista(artistaId);
@@ -277,223 +594,6 @@ public sealed class Menu
         }
     }
 
-    private void ListarArtistasSeguidos()
-    {
-        Console.Clear();
-        Cabecalho("ARTISTAS SEGUIDOS");
-        var artistas = _listagem.ListarArtistasSeguidos(_usuarioLogado!.IdUsuario);
-        Mostrar(artistas.Select((artista, indice) =>
-            $"{indice + 1} - {artista.Nome}"));
-        Separador();
-        Console.Write("Escolha um artista (0 para voltar): ");
-        if (!int.TryParse(Console.ReadLine(), out var escolha) || escolha == 0)
-            return;
-        if (escolha < 1 || escolha > artistas.Count)
-        {
-            Pausar("Artista inválido.");
-            return;
-        }
-
-        var artista = artistas[escolha - 1];
-        Console.Clear();
-        Cabecalho($"ARTISTA: {artista.Nome.ToUpperInvariant()}");
-        Console.WriteLine("1 - Visitar página do artista");
-        Console.WriteLine("2 - Deixar de seguir o artista");
-        Console.WriteLine("0 - Voltar");
-        Separador();
-
-        switch (Console.ReadLine())
-        {
-            case "1": VerAlbunsEMusicas(artista.IdArtista, artista.Nome); break;
-            case "2":
-                try
-                {
-                    _artistaBusiness.DeixarDeSeguirArtista(_usuarioLogado.IdUsuario, artista.IdArtista);
-                    Pausar("Você deixou de seguir o artista.");
-                }
-                catch (NegocioException excecao)
-                {
-                    Pausar(excecao.Message);
-                }
-                break;
-        }
-    }
-
-    private void ListarMusicasCurtidas()
-    {
-        Console.Clear();
-        Cabecalho("MÚSICAS CURTIDAS");
-        var musicas = _listagem.ListarMusicasCurtidas(_usuarioLogado!.IdUsuario);
-        Mostrar(musicas.Select((musica, indice) =>
-            $"{indice + 1} - {musica.Titulo} (ID: {musica.IdMidia})"));
-        Separador();
-        Console.Write("ID da música para deixar de curtir (0 para voltar): ");
-        if (int.TryParse(Console.ReadLine(), out var midiaId) && midiaId != 0)
-        {
-            try
-            {
-                _artistaBusiness.DescurtirMusica(_usuarioLogado.IdUsuario, midiaId);
-            }
-            catch (NegocioException excecao)
-            {
-                Console.WriteLine(excecao.Message);
-            }
-        }
-        Pausar();
-    }
-
-    private void MenuPlaylists()
-    {
-        while (true)
-        {
-            Console.Clear();
-            Cabecalho("PLAYLISTS");
-            var playlists = _listagem.ListarPlaylists(_usuarioLogado!.IdUsuario);
-            Mostrar(playlists.Select(playlist =>
-                $"ID: {playlist.IdPlaylist} - {playlist.NomePlaylist}"));
-            Console.WriteLine();
-            Console.WriteLine("1 - Criar playlist");
-            Console.WriteLine("2 - Ver playlist");
-            Console.WriteLine("3 - Remover playlist");
-            Console.WriteLine("0 - Voltar");
-            Separador();
-
-            switch (Console.ReadLine())
-            {
-                case "1": CriarPlaylist(); break;
-                case "2": VerPlaylist(playlists); break;
-                case "3": RemoverPlaylist(playlists); break;
-                case "0": return;
-                default: Pausar("Opção inválida."); break;
-            }
-        }
-    }
-
-    private void MenuMoodMatch()
-    {
-        Console.Clear();
-        Cabecalho("MOOD MATCH");
-        Console.WriteLine("Como você está se sentindo hoje?");
-        Console.WriteLine("1 - Alegre");
-        Console.WriteLine("2 - Triste");
-        Console.WriteLine("3 - Energetico");
-        Console.WriteLine("4 - Motivado");
-        Console.WriteLine("5 - Reflexivo");
-        Console.WriteLine("6 - Preguicoso");
-        Console.WriteLine("7 - Enfurecido");
-        Separador();
-        Console.Write("Digite o número escolhido: ");
-
-        if (!int.TryParse(Console.ReadLine(), out var emocaoId) || emocaoId < 1 || emocaoId > 7)
-        {
-            Pausar("Emoção inválida.");
-            return;
-        }
-
-        Console.Clear();
-        Cabecalho("MOOD MATCH");
-        Console.WriteLine("O que você está fazendo agora?");
-        Console.WriteLine("1 - Caminhando");
-        Console.WriteLine("2 - Cozinhando");
-        Console.WriteLine("3 - Jogando");
-        Console.WriteLine("4 - Estudando");
-        Console.WriteLine("5 - Relaxando");
-        Console.WriteLine("6 - Trabalhando");
-        Separador();
-        Console.Write("Digite o número escolhido: ");
-
-        if (!int.TryParse(Console.ReadLine(), out var atividadeId) || atividadeId < 1 || atividadeId > 6)
-        {
-            Pausar("Atividade inválida.");
-            return;
-        }
-
-        var musicas = _listagem.ListarMusicasPorMood(emocaoId, atividadeId);
-        Console.Clear();
-        Cabecalho("PLAYLIST SUGERIDA");
-        Console.WriteLine($"Emoção: {NomeEmocao(emocaoId)}");
-        Console.WriteLine($"Atividade: {NomeAtividade(atividadeId)}");
-        Console.WriteLine();
-        Mostrar(musicas.Select((musica, indice) =>
-            $"{indice + 1} - {musica.Titulo}"));
-
-        if (musicas.Count == 0)
-        {
-            Pausar("Nenhuma música encontrada para essa combinação.");
-            return;
-        }
-
-        Console.WriteLine();
-        Console.WriteLine("1 - Salvar playlist");
-        Console.WriteLine("0 - Voltar");
-        Separador();
-
-        if (Console.ReadLine() == "1")
-            SalvarPlaylistMood(musicas);
-    }
-
-    private void SalvarPlaylistMood(IReadOnlyList<Midia> musicas)
-    {
-        Console.Write("Digite o nome da playlist: ");
-        var nomePlaylist = Console.ReadLine() ?? string.Empty;
-
-        Playlist playlist;
-        try
-        {
-            playlist = _playlistBusiness.CriarPlaylist(nomePlaylist, _usuarioLogado!.IdUsuario);
-        }
-        catch (NegocioException excecao)
-        {
-            Pausar(excecao.Message);
-            return;
-        }
-
-        var musicasAdicionadas = 0;
-        foreach (var musica in musicas)
-        {
-            try
-            {
-                _playlistBusiness.AdicionarMusica(_usuarioLogado.IdUsuario, playlist.IdPlaylist, musica.IdMidia);
-                musicasAdicionadas++;
-            }
-            catch (NegocioException)
-            {
-                
-            }
-        }
-
-        Pausar($"Playlist '{playlist.NomePlaylist}' salva com {musicasAdicionadas} música(s).");
-    }
-
-    private static string NomeEmocao(int emocaoId)
-    {
-        return emocaoId switch
-        {
-            1 => "Alegre",
-            2 => "Triste",
-            3 => "Energetico",
-            4 => "Motivado",
-            5 => "Reflexivo",
-            6 => "Preguicoso",
-            7 => "Enfurecido",
-            _ => "Desconhecida"
-        };
-    }
-
-    private static string NomeAtividade(int atividadeId)
-    {
-        return atividadeId switch
-        {
-            1 => "Caminhando",
-            2 => "Cozinhando",
-            3 => "Jogando",
-            4 => "Estudando",
-            5 => "Relaxando",
-            6 => "Trabalhando",
-            _ => "Desconhecida"
-        };
-    }
-
     private void CriarPlaylist()
     {
         Console.Write("Nome da playlist: ");
@@ -523,13 +623,14 @@ public sealed class Menu
         while (true)
         {
             Console.Clear();
-            Cabecalho("MÚSICAS DA PLAYLIST");
+            Cabecalho("MÚSICAS", "PLAYLIST");
             var musicas = _listagem.ListarMusicasDaPlaylist(playlistId);
             Mostrar(musicas.Select((musica, indice) =>
                 $"{indice + 1} - {musica.Titulo} (ID: {musica.IdMidia})"));
             Console.WriteLine();
             Console.WriteLine("1 - Adicionar música");
             Console.WriteLine("2 - Remover música");
+            Console.WriteLine("3 - Tocar Playlist");
             Console.WriteLine("0 - Voltar");
             Separador();
             var acao = Console.ReadLine();
@@ -548,6 +649,11 @@ public sealed class Menu
                     _playlistBusiness.AdicionarMusica(_usuarioLogado!.IdUsuario, playlistId, midiaId);
                 else if (acao == "2")
                     _playlistBusiness.RemoverMusica(_usuarioLogado!.IdUsuario, playlistId, midiaId);
+                else if (acao == "3")
+                {
+                    TocarMusicasPlayList(musicas);
+                }
+
 
                 Pausar("Operacao realizada.");
             }
@@ -573,17 +679,30 @@ public sealed class Menu
             Pausar(excecao.Message);
         }
     }
+    #endregion
 
-    private static void Cabecalho(string titulo)
+
+
+
+    #region METODOS PRIVADOS
+    private static void Cabecalho(string titulo, string subMenu)
     {
         Separador();
-        Console.WriteLine(titulo);
+        Destaque(titulo, ConsoleColor.DarkBlue); Console.Write(" - "); Destaque(subMenu, ConsoleColor.Gray);
+        Console.WriteLine();
         Separador();
     }
 
     private static void Separador()
     {
-        Console.WriteLine("===============================");
+        Destaque("===============================", ConsoleColor.DarkGreen);
+        Console.WriteLine();
+    }
+    private static void Destaque(string text, ConsoleColor cor)
+    {
+        Console.ForegroundColor = cor;
+        Console.Write(text);
+        Console.ResetColor();
     }
 
     private static void Mostrar(IEnumerable<string> itens)
@@ -599,7 +718,8 @@ public sealed class Menu
     private static void Pausar(string mensagem = "Pressione qualquer tecla para continuar.")
     {
         if (!string.IsNullOrWhiteSpace(mensagem))
-            Console.WriteLine(mensagem);
+            Destaque(mensagem, ConsoleColor.DarkCyan);
         Console.ReadKey();
     }
+    #endregion
 }

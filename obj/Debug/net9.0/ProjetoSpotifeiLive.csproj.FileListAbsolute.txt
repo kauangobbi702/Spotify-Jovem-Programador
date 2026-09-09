@@ -11,3 +11,16 @@ C:\workplace\ProjetoSpotifeiLive\obj\Debug\net9.0\ProjetoSpotifeiLive.dll
 C:\workplace\ProjetoSpotifeiLive\obj\Debug\net9.0\refint\ProjetoSpotifeiLive.dll
 C:\workplace\ProjetoSpotifeiLive\obj\Debug\net9.0\ProjetoSpotifeiLive.pdb
 C:\workplace\ProjetoSpotifeiLive\obj\Debug\net9.0\ref\ProjetoSpotifeiLive.dll
+C:\workplace\Desenvolvedor Web\SpotifyRecomendacoesFoda\bin\Debug\net9.0\ProjetoSpotifeiLive.deps.json
+C:\workplace\Desenvolvedor Web\SpotifyRecomendacoesFoda\bin\Debug\net9.0\ProjetoSpotifeiLive.dll
+C:\workplace\Desenvolvedor Web\SpotifyRecomendacoesFoda\bin\Debug\net9.0\ProjetoSpotifeiLive.pdb
+C:\workplace\Desenvolvedor Web\SpotifyRecomendacoesFoda\obj\Debug\net9.0\ProjetoSpotifeiLive.csproj.AssemblyReference.cache
+C:\workplace\Desenvolvedor Web\SpotifyRecomendacoesFoda\obj\Debug\net9.0\ProjetoSpotifeiLive.GeneratedMSBuildEditorConfig.editorconfig
+C:\workplace\Desenvolvedor Web\SpotifyRecomendacoesFoda\obj\Debug\net9.0\ProjetoSpotifeiLive.AssemblyInfoInputs.cache
+C:\workplace\Desenvolvedor Web\SpotifyRecomendacoesFoda\obj\Debug\net9.0\ProjetoSpotifeiLive.AssemblyInfo.cs
+C:\workplace\Desenvolvedor Web\SpotifyRecomendacoesFoda\obj\Debug\net9.0\ProjetoSpotifeiLive.csproj.CoreCompileInputs.cache
+C:\workplace\Desenvolvedor Web\SpotifyRecomendacoesFoda\obj\Debug\net9.0\ProjetoSpotifeiLive.sourcelink.json
+C:\workplace\Desenvolvedor Web\SpotifyRecomendacoesFoda\obj\Debug\net9.0\ProjetoSpotifeiLive.dll
+C:\workplace\Desenvolvedor Web\SpotifyRecomendacoesFoda\obj\Debug\net9.0\refint\ProjetoSpotifeiLive.dll
+C:\workplace\Desenvolvedor Web\SpotifyRecomendacoesFoda\obj\Debug\net9.0\ProjetoSpotifeiLive.pdb
+C:\workplace\Desenvolvedor Web\SpotifyRecomendacoesFoda\obj\Debug\net9.0\ref\ProjetoSpotifeiLive.dll

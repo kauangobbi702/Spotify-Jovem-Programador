@@ -16,3 +16,21 @@ C:\workplace\Spotify-Jovem-Programador\SpotifyRecom.Business\obj\Debug\net10.0\S
 C:\workplace\Spotify-Jovem-Programador\SpotifyRecom.Business\obj\Debug\net10.0\refint\SpotifyRecom.Business.dll
 C:\workplace\Spotify-Jovem-Programador\SpotifyRecom.Business\obj\Debug\net10.0\SpotifyRecom.Business.pdb
 C:\workplace\Spotify-Jovem-Programador\SpotifyRecom.Business\obj\Debug\net10.0\ref\SpotifyRecom.Business.dll
+C:\workplace\Desenvolvedor Web\SpotifyRecomendacoesFoda\SpotifyRecom.Business\bin\Debug\net10.0\SpotifyRecom.Business.deps.json
+C:\workplace\Desenvolvedor Web\SpotifyRecomendacoesFoda\SpotifyRecom.Business\bin\Debug\net10.0\SpotifyRecom.Business.dll
+C:\workplace\Desenvolvedor Web\SpotifyRecomendacoesFoda\SpotifyRecom.Business\bin\Debug\net10.0\SpotifyRecom.Business.pdb
+C:\workplace\Desenvolvedor Web\SpotifyRecomendacoesFoda\SpotifyRecom.Business\bin\Debug\net10.0\SpotifyRecom.Data.dll
+C:\workplace\Desenvolvedor Web\SpotifyRecomendacoesFoda\SpotifyRecom.Business\bin\Debug\net10.0\SpotifyRecom.Model.dll
+C:\workplace\Desenvolvedor Web\SpotifyRecomendacoesFoda\SpotifyRecom.Business\bin\Debug\net10.0\SpotifyRecom.Data.pdb
+C:\workplace\Desenvolvedor Web\SpotifyRecomendacoesFoda\SpotifyRecom.Business\bin\Debug\net10.0\SpotifyRecom.Model.pdb
+C:\workplace\Desenvolvedor Web\SpotifyRecomendacoesFoda\SpotifyRecom.Business\obj\Debug\net10.0\SpotifyRecom.Business.csproj.AssemblyReference.cache
+C:\workplace\Desenvolvedor Web\SpotifyRecomendacoesFoda\SpotifyRecom.Business\obj\Debug\net10.0\SpotifyRecom.Business.GeneratedMSBuildEditorConfig.editorconfig
+C:\workplace\Desenvolvedor Web\SpotifyRecomendacoesFoda\SpotifyRecom.Business\obj\Debug\net10.0\SpotifyRecom.Business.AssemblyInfoInputs.cache
+C:\workplace\Desenvolvedor Web\SpotifyRecomendacoesFoda\SpotifyRecom.Business\obj\Debug\net10.0\SpotifyRecom.Business.AssemblyInfo.cs
+C:\workplace\Desenvolvedor Web\SpotifyRecomendacoesFoda\SpotifyRecom.Business\obj\Debug\net10.0\SpotifyRecom.Business.csproj.CoreCompileInputs.cache
+C:\workplace\Desenvolvedor Web\SpotifyRecomendacoesFoda\SpotifyRecom.Business\obj\Debug\net10.0\SpotifyRecom.Business.sourcelink.json
+C:\workplace\Desenvolvedor Web\SpotifyRecomendacoesFoda\SpotifyRecom.Business\obj\Debug\net10.0\SpotifyR.81BE9624.Up2Date
+C:\workplace\Desenvolvedor Web\SpotifyRecomendacoesFoda\SpotifyRecom.Business\obj\Debug\net10.0\SpotifyRecom.Business.dll
+C:\workplace\Desenvolvedor Web\SpotifyRecomendacoesFoda\SpotifyRecom.Business\obj\Debug\net10.0\refint\SpotifyRecom.Business.dll
+C:\workplace\Desenvolvedor Web\SpotifyRecomendacoesFoda\SpotifyRecom.Business\obj\Debug\net10.0\SpotifyRecom.Business.pdb
+C:\workplace\Desenvolvedor Web\SpotifyRecomendacoesFoda\SpotifyRecom.Business\obj\Debug\net10.0\ref\SpotifyRecom.Business.dll

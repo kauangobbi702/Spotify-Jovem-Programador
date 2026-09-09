@@ -1,6 +1,5 @@
 using System.Diagnostics;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.Identity.Client;
 using SpotifyRecom.Business;
 using SpotifyRecom.Business.Excecoes;
 using SpotifyRecom.Data;

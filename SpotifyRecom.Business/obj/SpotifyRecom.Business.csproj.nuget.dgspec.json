@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\workplace\\Spotify-Jovem-Programador\\SpotifyRecom.Business\\SpotifyRecom.Business.csproj": {}
+    "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Business\\SpotifyRecom.Business.csproj": {}
   },
   "projects": {
-    "C:\\workplace\\Spotify-Jovem-Programador\\SpotifyRecom.Business\\SpotifyRecom.Business.csproj": {
+    "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Business\\SpotifyRecom.Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\workplace\\Spotify-Jovem-Programador\\SpotifyRecom.Business\\SpotifyRecom.Business.csproj",
+        "projectUniqueName": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Business\\SpotifyRecom.Business.csproj",
         "projectName": "SpotifyRecom.Business",
-        "projectPath": "C:\\workplace\\Spotify-Jovem-Programador\\SpotifyRecom.Business\\SpotifyRecom.Business.csproj",
-        "packagesPath": "C:\\Users\\Pichau\\.nuget\\packages\\",
-        "outputPath": "C:\\workplace\\Spotify-Jovem-Programador\\SpotifyRecom.Business\\obj\\",
+        "projectPath": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Business\\SpotifyRecom.Business.csproj",
+        "packagesPath": "C:\\Users\\Prog_Sis\\.nuget\\packages\\",
+        "outputPath": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Business\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Pichau\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Prog_Sis\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
@@ -27,11 +27,11 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\workplace\\Spotify-Jovem-Programador\\SpotifyRecom.Data\\SpotifyRecom.Data.csproj": {
-                "projectPath": "C:\\workplace\\Spotify-Jovem-Programador\\SpotifyRecom.Data\\SpotifyRecom.Data.csproj"
+              "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Data\\SpotifyRecom.Data.csproj": {
+                "projectPath": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Data\\SpotifyRecom.Data.csproj"
               },
-              "C:\\workplace\\Spotify-Jovem-Programador\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj": {
-                "projectPath": "C:\\workplace\\Spotify-Jovem-Programador\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj"
+              "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj": {
+                "projectPath": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj"
               }
             }
           }
@@ -346,17 +346,17 @@
         }
       }
     },
-    "C:\\workplace\\Spotify-Jovem-Programador\\SpotifyRecom.Data\\SpotifyRecom.Data.csproj": {
+    "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Data\\SpotifyRecom.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\workplace\\Spotify-Jovem-Programador\\SpotifyRecom.Data\\SpotifyRecom.Data.csproj",
+        "projectUniqueName": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Data\\SpotifyRecom.Data.csproj",
         "projectName": "SpotifyRecom.Data",
-        "projectPath": "C:\\workplace\\Spotify-Jovem-Programador\\SpotifyRecom.Data\\SpotifyRecom.Data.csproj",
-        "packagesPath": "C:\\Users\\Pichau\\.nuget\\packages\\",
-        "outputPath": "C:\\workplace\\Spotify-Jovem-Programador\\SpotifyRecom.Data\\obj\\",
+        "projectPath": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Data\\SpotifyRecom.Data.csproj",
+        "packagesPath": "C:\\Users\\Prog_Sis\\.nuget\\packages\\",
+        "outputPath": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Pichau\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Prog_Sis\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
@@ -369,8 +369,8 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\workplace\\Spotify-Jovem-Programador\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj": {
-                "projectPath": "C:\\workplace\\Spotify-Jovem-Programador\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj"
+              "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj": {
+                "projectPath": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj"
               }
             }
           }
@@ -701,17 +701,17 @@
         }
       }
     },
-    "C:\\workplace\\Spotify-Jovem-Programador\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj": {
+    "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\workplace\\Spotify-Jovem-Programador\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj",
+        "projectUniqueName": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj",
         "projectName": "SpotifyRecom.Model",
-        "projectPath": "C:\\workplace\\Spotify-Jovem-Programador\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj",
-        "packagesPath": "C:\\Users\\Pichau\\.nuget\\packages\\",
-        "outputPath": "C:\\workplace\\Spotify-Jovem-Programador\\SpotifyRecom.Model\\obj\\",
+        "projectPath": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj",
+        "packagesPath": "C:\\Users\\Prog_Sis\\.nuget\\packages\\",
+        "outputPath": "C:\\workplace\\Desenvolvedor Web\\SpotifyRecomendacoesFoda\\SpotifyRecom.Model\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Pichau\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Prog_Sis\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net10.0"

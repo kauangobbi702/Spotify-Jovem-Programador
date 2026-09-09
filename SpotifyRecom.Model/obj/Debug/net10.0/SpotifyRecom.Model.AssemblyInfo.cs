@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SpotifyRecom.Model")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+06e8bac578a1e40b9bcde419a76aa0743d30cb79")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0224b2f4509bea1614243b7e73c214bc3e86ccb9")]
 [assembly: System.Reflection.AssemblyProductAttribute("SpotifyRecom.Model")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SpotifyRecom.Model")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

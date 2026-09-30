@@ -56,4 +56,22 @@ app.MapGet("/spotify/musicas_curtidas", (int usuarioId) =>
     return musicasCurtidas;
 });
 
+app.MapGet("/spotify/playlists_usuario", (int usuarioId) =>
+{
+    List<Playlist> musicas = new ListagemEF(new SpotifyRecomContext()).ListarPlaylists(usuarioId);
+    return musicas;
+});
+
+app.MapGet("/spotify/musicas_playlist", (int playlistId) =>
+{
+    List<Midia> musicasPlaylist = new ListagemEF(new SpotifyRecomContext()).ListarMusicasDaPlaylist(playlistId);
+    return musicasPlaylist;
+});
+
+app.MapGet("/spotify/musicas_mood", (int emocaoId, int atividadeId) =>
+{
+    List<Midia> musicasMood = new ListagemEF(new SpotifyRecomContext()).ListarMusicasPorMood(emocaoId, atividadeId);
+    return musicasMood;
+});
+
 app.Run();

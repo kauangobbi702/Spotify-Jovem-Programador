@@ -1,7 +1,6 @@
 using System.Diagnostics;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.Identity.Client;
-using SpotifyRecom.Business;
+using SpotifyRecom.Service;
 using SpotifyRecom.Business.Excecoes;
 using SpotifyRecom.Data;
 using SpotifyRecom.Model;
@@ -10,25 +9,18 @@ namespace SpotifyRecom.App;
 
 public sealed class Menu
 {
-    private readonly AutenticacaoEF _autenticacao;
-    private readonly ListagemEF _listagem;
-    private readonly AdicionarEF _adicionar;
-    private readonly RemoverEF _remover;
-    private readonly UsuarioBusiness _usuarioBusiness;
-    private readonly ArtistaBusiness _artistaBusiness;
-    private readonly PlaylistBusiness _playlistBusiness;
+    private readonly UsuarioService _usuarioService;
+    private readonly ArtistaService _artistaService;
+    private readonly PlaylistService _playlistService;
+    private readonly MoodMatchService _moodMatchService;
     private Usuario? _usuarioLogado;
 
     public Menu(SpotifyRecomContext context)
     {
-        _autenticacao = new AutenticacaoEF(context);
-        _listagem = new ListagemEF(context);
-        _adicionar = new AdicionarEF(context);
-        _remover = new RemoverEF(context);
-
-        _usuarioBusiness = new UsuarioBusiness(_adicionar, _autenticacao, _listagem);
-        _artistaBusiness = new ArtistaBusiness(_adicionar, _remover, _listagem);
-        _playlistBusiness = new PlaylistBusiness(_adicionar, _remover);
+        _usuarioService = new UsuarioService(context);
+        _artistaService = new ArtistaService(context);
+        _playlistService = new PlaylistService(context);
+        _moodMatchService = new MoodMatchService(context);
     }
 
     #region MENUS - ENTRADA
@@ -64,7 +56,7 @@ public sealed class Menu
 
         try
         {
-            _usuarioLogado = _usuarioBusiness.ValidarLogin(email, senha);
+            _usuarioLogado = _usuarioService.ValidarLogin(email, senha);
         }
         catch (NegocioException excecao)
         {
@@ -86,7 +78,7 @@ public sealed class Menu
         Console.Write("Senha: ");
         var senha = Console.ReadLine() ?? string.Empty;
 
-        var planos = _listagem.ListarPlanos();
+        var planos = _usuarioService.ListarPlanos();
         if (planos.Count == 0)
         {
             Pausar("Nenhum plano cadastrado.");
@@ -109,7 +101,7 @@ public sealed class Menu
 
         try
         {
-            _usuarioBusiness.CadastrarUsuario(nome, email, senha, planos[planoEscolhido - 1].IdPlano);
+            _usuarioService.CadastrarUsuario(nome, email, senha, planos[planoEscolhido - 1].IdPlano);
             Pausar("Usuario cadastrado com sucesso.");
         }
         catch (NegocioException excecao)
@@ -155,7 +147,7 @@ public sealed class Menu
     {
         Console.Clear();
         Cabecalho("ARTISTAS", "MENU");
-        var artistas = _listagem.ListarTodosArtistas();
+        var artistas = _artistaService.ListarTodosArtistas();
         Mostrar(artistas.Select((artista, indice) =>
             $"{indice + 1} - {artista.Nome}"));
         Separador();
@@ -183,7 +175,7 @@ public sealed class Menu
             case "2":
                 try
                 {
-                    _artistaBusiness.SeguirArtista(_usuarioLogado!.IdUsuario, artista.IdArtista);
+                    _artistaService.SeguirArtista(_usuarioLogado!.IdUsuario, artista.IdArtista);
                     Pausar("Artista seguido.");
                 }
                 catch (NegocioException excecao)
@@ -199,7 +191,7 @@ public sealed class Menu
         {
             Console.Clear();
             Cabecalho("PLAYLISTS", "MENU");
-            var playlists = _listagem.ListarPlaylists(_usuarioLogado!.IdUsuario);
+            var playlists = _playlistService.ListarPlaylists(_usuarioLogado!.IdUsuario);
             Mostrar(playlists.Select(playlist =>
                 $"ID: {playlist.IdPlaylist} - {playlist.NomePlaylist}"));
             Console.WriteLine();
@@ -259,7 +251,7 @@ public sealed class Menu
             return;
         }
 
-        var musicas = _listagem.ListarMusicasPorMood(emocaoId, atividadeId);
+        var musicas = _moodMatchService.ListarMusicasPorMood(emocaoId, atividadeId);
         Console.Clear();
         Cabecalho("PLAYLIST SUGERIDA", "MOOD MATCH");
         Console.WriteLine($"Emoção: {NomeEmocao(emocaoId)}");
@@ -359,7 +351,7 @@ public sealed class Menu
         List<Midia> midias = new List<Midia>();
         Console.Clear();
         Cabecalho($"ÁLBUNS E MÚSICAS ", $"{nomeArtista.ToUpperInvariant()}");
-        var albuns = _listagem.ListarAlbunsDoArtista(artistaId);
+        var albuns = _artistaService.ListarAlbunsDoArtista(artistaId);
         if (albuns.Count == 0)
         {
             Pausar("Este artista ainda não possui álbuns cadastrados.");
@@ -370,7 +362,7 @@ public sealed class Menu
         {
             Console.WriteLine();
             Console.WriteLine($"Album: {album.Nome}");
-            var musicas = _listagem.ListarMusicasDoAlbum(album.IdAlbum);
+            var musicas = _artistaService.ListarMusicasDoAlbum(album.IdAlbum);
             for (int indice = 0; indice < musicas.Count; indice++)
             {
                 midias.Add(musicas[indice]);
@@ -400,7 +392,7 @@ public sealed class Menu
 
     private void CurtirMusica(int artistaId)
     {
-        var musicas = _listagem.ListarMusicasDoArtista(artistaId);
+        var musicas = _artistaService.ListarMusicasDoArtista(artistaId);
         Console.Write("ID da musica para curtir (0 para voltar): ");
         if (!int.TryParse(Console.ReadLine(), out var midiaId) || midiaId == 0) return;
 
@@ -412,7 +404,7 @@ public sealed class Menu
 
         try
         {
-            _artistaBusiness.CurtirMusica(_usuarioLogado!.IdUsuario, midiaId);
+            _artistaService.CurtirMusica(_usuarioLogado!.IdUsuario, midiaId);
             Pausar("Música curtida.");
         }
         catch (NegocioException excecao)
@@ -425,7 +417,7 @@ public sealed class Menu
     {
         Console.Clear();
         Cabecalho("ARTISTAS", "SEGUIDOS");
-        var artistas = _listagem.ListarArtistasSeguidos(_usuarioLogado!.IdUsuario);
+        var artistas = _artistaService.ListarArtistasSeguidos(_usuarioLogado!.IdUsuario);
         Mostrar(artistas.Select((artista, indice) =>
             $"{indice + 1} - {artista.Nome}"));
         Separador();
@@ -452,7 +444,7 @@ public sealed class Menu
             case "2":
                 try
                 {
-                    _artistaBusiness.DeixarDeSeguirArtista(_usuarioLogado.IdUsuario, artista.IdArtista);
+                    _artistaService.DeixarDeSeguirArtista(_usuarioLogado.IdUsuario, artista.IdArtista);
                     Pausar("Você deixou de seguir o artista.");
                 }
                 catch (NegocioException excecao)
@@ -467,7 +459,7 @@ public sealed class Menu
     {
         Console.Clear();
         Cabecalho("MÚSICAS", "CURTIDAS");
-        var musicas = _listagem.ListarMusicasCurtidas(_usuarioLogado!.IdUsuario);
+        var musicas = _artistaService.ListarMusicasCurtidas(_usuarioLogado!.IdUsuario);
         Mostrar(musicas.Select((musica, indice) =>
             $"{indice + 1} - {musica.Titulo} (ID: {musica.IdMidia})"));
         Separador();
@@ -476,7 +468,7 @@ public sealed class Menu
         {
             try
             {
-                _artistaBusiness.DescurtirMusica(_usuarioLogado.IdUsuario, midiaId);
+                _artistaService.DescurtirMusica(_usuarioLogado.IdUsuario, midiaId);
             }
             catch (NegocioException excecao)
             {
@@ -528,7 +520,7 @@ public sealed class Menu
         Playlist playlist;
         try
         {
-            playlist = _playlistBusiness.CriarPlaylist(nomePlaylist, _usuarioLogado!.IdUsuario);
+            playlist = _playlistService.CriarPlaylist(nomePlaylist, _usuarioLogado!.IdUsuario);
         }
         catch (NegocioException excecao)
         {
@@ -541,7 +533,7 @@ public sealed class Menu
         {
             try
             {
-                _playlistBusiness.AdicionarMusica(_usuarioLogado.IdUsuario, playlist.IdPlaylist, musica.IdMidia);
+                _playlistService.AdicionarMusica(_usuarioLogado.IdUsuario, playlist.IdPlaylist, musica.IdMidia);
                 musicasAdicionadas++;
             }
             catch (NegocioException)
@@ -561,8 +553,8 @@ public sealed class Menu
     #region PLAYLIST
     private void AdicionarMusicaAPlaylist(int artistaId)
     {
-        var musicas = _listagem.ListarMusicasDoArtista(artistaId);
-        var playlists = _listagem.ListarPlaylists(_usuarioLogado!.IdUsuario);
+        var musicas = _artistaService.ListarMusicasDoArtista(artistaId);
+        var playlists = _playlistService.ListarPlaylists(_usuarioLogado!.IdUsuario);
         if (playlists.Count == 0)
         {
             Pausar("Você ainda não possui playlists.");
@@ -585,7 +577,7 @@ public sealed class Menu
 
         try
         {
-            _playlistBusiness.AdicionarMusica(_usuarioLogado.IdUsuario, playlistId, midiaId);
+            _playlistService.AdicionarMusica(_usuarioLogado.IdUsuario, playlistId, midiaId);
             Pausar("Música adicionada à playlist.");
         }
         catch (NegocioException excecao)
@@ -601,7 +593,7 @@ public sealed class Menu
 
         try
         {
-            _playlistBusiness.CriarPlaylist(nome, _usuarioLogado!.IdUsuario);
+            _playlistService.CriarPlaylist(nome, _usuarioLogado!.IdUsuario);
             Pausar("Playlist criada.");
         }
         catch (NegocioException excecao)
@@ -624,7 +616,7 @@ public sealed class Menu
         {
             Console.Clear();
             Cabecalho("MÚSICAS", "PLAYLIST");
-            var musicas = _listagem.ListarMusicasDaPlaylist(playlistId);
+            var musicas = _playlistService.ListarMusicasDaPlaylist(playlistId);
             Mostrar(musicas.Select((musica, indice) =>
                 $"{indice + 1} - {musica.Titulo} (ID: {musica.IdMidia})"));
             Console.WriteLine();
@@ -646,9 +638,9 @@ public sealed class Menu
             try
             {
                 if (acao == "1")
-                    _playlistBusiness.AdicionarMusica(_usuarioLogado!.IdUsuario, playlistId, midiaId);
+                    _playlistService.AdicionarMusica(_usuarioLogado!.IdUsuario, playlistId, midiaId);
                 else if (acao == "2")
-                    _playlistBusiness.RemoverMusica(_usuarioLogado!.IdUsuario, playlistId, midiaId);
+                    _playlistService.RemoverMusica(_usuarioLogado!.IdUsuario, playlistId, midiaId);
                 else if (acao == "3")
                 {
                     TocarMusicasPlayList(musicas);
@@ -671,7 +663,7 @@ public sealed class Menu
 
         try
         {
-            _playlistBusiness.RemoverPlaylist(_usuarioLogado!.IdUsuario, playlistId);
+            _playlistService.RemoverPlaylist(_usuarioLogado!.IdUsuario, playlistId);
             Pausar("Playlist removida.");
         }
         catch (NegocioException excecao)

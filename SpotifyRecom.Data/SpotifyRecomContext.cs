@@ -19,7 +19,7 @@ public class SpotifyRecomContext : DbContext
     public DbSet<MusicaEmocao> MusicasEmocoes { get; set; }
     public DbSet<MusicaAtividade> MusicasAtividades { get; set; }
 
-    private readonly string StringConexao = "Server=localhost;Port=3306;Database=db_spotify_recomendacoes;Uid=root;Pwd=Sh1nobu-chan!;";
+    private readonly string StringConexao = "Server=localhost;Port=3306;Database=db_spotify_recomendacoes;Uid=root;Pwd=1234;";
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

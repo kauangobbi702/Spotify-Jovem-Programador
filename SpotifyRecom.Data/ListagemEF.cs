@@ -94,6 +94,16 @@ public sealed class ListagemEF
             .ToList();
     }
 
+    public List<Midia> ListarMusicasDaPlaylist(int playlistId, int usuarioId)
+    {
+        return _context.MusicasPlaylists
+            .AsNoTracking()
+            .Where(item => item.PlaylistId == playlistId && item.UsuarioId == usuarioId)
+            .Select(item => item.Midia)
+            .OrderBy(midia => midia.Titulo)
+            .ToList();
+    }
+
     public List<Midia> ListarMusicasPorMood(int emocaoId, int atividadeId)
     {
         return _context.Midias

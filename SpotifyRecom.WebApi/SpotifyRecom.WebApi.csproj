@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SpotifyRecom.Service\SpotifyRecom.Service.csproj" />
     <ProjectReference Include="..\SpotifyRecom.Data\SpotifyRecom.Data.csproj" />
     <ProjectReference Include="..\SpotifyRecom.Model\SpotifyRecom.Model.csproj" />
   </ItemGroup>

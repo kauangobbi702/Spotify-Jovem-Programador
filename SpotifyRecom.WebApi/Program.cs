@@ -1,8 +1,11 @@
 using System.Text.Json.Serialization;
+using System.Security.Claims;
+using SpotifyRecom.Business.Excecoes;
 using SpotifyRecom.Data;
 using SpotifyRecom.Model;
+using SpotifyRecom.Service;
+using SpotifyRecom.WebApi;
 using Microsoft.AspNetCore.Mvc;
-using System.Text;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,9 +15,7 @@ builder.Services.ConfigureHttpJsonOptions(options =>
     options.SerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
 });
 
-var jwtSettings = builder.Configuration.GetSection("JWTSettings");
-        
-var chaveSecretaBytes = Encoding.ASCII.GetBytes(jwtSettings["SecretKey"]);
+var signingKey = TokenService.GetSigningKey(builder.Configuration);
 
 builder.Services.AddAuthentication(options =>
 {
@@ -30,7 +31,7 @@ builder.Services.AddAuthentication(options =>
         ValidateAudience = false,
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(chaveSecretaBytes),
+        IssuerSigningKey = signingKey,
         ClockSkew = TimeSpan.Zero
     };
 });
@@ -42,13 +43,25 @@ var app = builder.Build();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapPost("/login/auth", ([FromBody] Usuario usuario) =>
+app.MapPost("/login/auth", ([FromBody] LoginRequest request) =>
 {
-   TokenService authService = new TokenService(builder.Configuration);
-   return authService.GerarToken(usuario);
+    using var context = new SpotifyRecomContext();
+    var usuarioService = new UsuarioService(context);
+
+    try
+    {
+        var usuario = usuarioService.ValidarLogin(request.Email, request.Senha);
+        var token = new TokenService(builder.Configuration).GenerateToken(usuario);
+        return Results.Ok(new { token });
+    }
+    catch (CredenciaisInvalidasException)
+    {
+        return Results.Unauthorized();
+    }
 });
 
-var curtidasPlaylistsUsuarioGroup = app.MapGroup("/usuario").RequireAuthorization();
+var curtidasPlaylistsUsuarioGroup = app.MapGroup("/usuario")
+    .RequireAuthorization(policy => policy.RequireClaim(ClaimTypes.NameIdentifier));
 
 app.MapGet("/", () => "Hello World!");
 
@@ -82,27 +95,32 @@ app.MapGet("/spotify/musicas_artista", (int artistaId) =>
     return musicasArtista;
 });
 
-curtidasPlaylistsUsuarioGroup.MapGet("/spotify/artistas_seguidos", (int usuarioId) =>
+curtidasPlaylistsUsuarioGroup.MapGet("/spotify/artistas_seguidos", (ClaimsPrincipal usuario) =>
 {
+    var usuarioId = ObterIdUsuario(usuario);
     List<Artista> artistasSeguidos = new ListagemEF(new SpotifyRecomContext()).ListarArtistasSeguidos(usuarioId);
     return artistasSeguidos;
 });
 
-curtidasPlaylistsUsuarioGroup.MapGet("/spotify/musicas_curtidas", (int usuarioId) =>
+curtidasPlaylistsUsuarioGroup.MapGet("/spotify/musicas_curtidas", (ClaimsPrincipal usuario) =>
 {
+    var usuarioId = ObterIdUsuario(usuario);
     List<Midia> musicasCurtidas = new ListagemEF(new SpotifyRecomContext()).ListarMusicasCurtidas(usuarioId);
     return musicasCurtidas;
 });
 
-curtidasPlaylistsUsuarioGroup.MapGet("/spotify/playlists_usuario", (int usuarioId) =>
+curtidasPlaylistsUsuarioGroup.MapGet("/spotify/playlists_usuario", (ClaimsPrincipal usuario) =>
 {
+    var usuarioId = ObterIdUsuario(usuario);
     List<Playlist> musicas = new ListagemEF(new SpotifyRecomContext()).ListarPlaylists(usuarioId);
     return musicas;
 });
 
-curtidasPlaylistsUsuarioGroup.MapGet("/spotify/musicas_playlist", (int playlistId) =>
+curtidasPlaylistsUsuarioGroup.MapGet("/spotify/musicas_playlist", (int playlistId, ClaimsPrincipal usuario) =>
 {
-    List<Midia> musicasPlaylist = new ListagemEF(new SpotifyRecomContext()).ListarMusicasDaPlaylist(playlistId);
+    var usuarioId = ObterIdUsuario(usuario);
+    List<Midia> musicasPlaylist = new ListagemEF(new SpotifyRecomContext())
+        .ListarMusicasDaPlaylist(playlistId, usuarioId);
     return musicasPlaylist;
 });
 
@@ -113,3 +131,6 @@ curtidasPlaylistsUsuarioGroup.MapGet("/spotify/musicas_mood", (int emocaoId, int
 });
 
 app.Run();
+
+static int ObterIdUsuario(ClaimsPrincipal usuario) =>
+    int.Parse(usuario.FindFirstValue(ClaimTypes.NameIdentifier)!);

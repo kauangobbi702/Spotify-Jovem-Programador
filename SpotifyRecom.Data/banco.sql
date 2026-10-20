@@ -1,3 +1,7 @@
+CREATE DATABASE IF NOT EXISTS db_spotify_recomendacoes;
+USE db_spotify_recomendacoes;
+SET SQL_SAFE_UPDATES = 0;
+
 CREATE TABLE IF NOT EXISTS `__EFMigrationsHistory` (
     `MigrationId` varchar(150) CHARACTER SET utf8mb4 NOT NULL,
     `ProductVersion` varchar(32) CHARACTER SET utf8mb4 NOT NULL,
@@ -1050,4 +1054,3 @@ CALL MigrationsScript();
 DROP PROCEDURE MigrationsScript;
 
 COMMIT;
-

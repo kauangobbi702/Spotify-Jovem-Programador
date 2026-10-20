@@ -1,3 +1,4 @@
+SET SQL_SAFE_UPDATES = 0;
 use db_spotify_recomendacoes;
 START TRANSACTION;
 

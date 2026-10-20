@@ -738,11 +738,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\workplace\\Spotify_Recomendacoes\\Spotify-Jovem-Programador\\SpotifyRecom.Business\\SpotifyRecom.Business.csproj",
+      "projectUniqueName": "C:\\Users\\Suporte\\Desktop\\Spotify_Recomendacoes\\Spotify-Jovem-Programador\\SpotifyRecom.Business\\SpotifyRecom.Business.csproj",
       "projectName": "SpotifyRecom.Business",
-      "projectPath": "C:\\workplace\\Spotify_Recomendacoes\\Spotify-Jovem-Programador\\SpotifyRecom.Business\\SpotifyRecom.Business.csproj",
+      "projectPath": "C:\\Users\\Suporte\\Desktop\\Spotify_Recomendacoes\\Spotify-Jovem-Programador\\SpotifyRecom.Business\\SpotifyRecom.Business.csproj",
       "packagesPath": "C:\\Users\\Suporte\\.nuget\\packages\\",
-      "outputPath": "C:\\workplace\\Spotify_Recomendacoes\\Spotify-Jovem-Programador\\SpotifyRecom.Business\\obj\\",
+      "outputPath": "C:\\Users\\Suporte\\Desktop\\Spotify_Recomendacoes\\Spotify-Jovem-Programador\\SpotifyRecom.Business\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Suporte\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -758,11 +758,11 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {
-            "C:\\workplace\\Spotify_Recomendacoes\\Spotify-Jovem-Programador\\SpotifyRecom.Data\\SpotifyRecom.Data.csproj": {
-              "projectPath": "C:\\workplace\\Spotify_Recomendacoes\\Spotify-Jovem-Programador\\SpotifyRecom.Data\\SpotifyRecom.Data.csproj"
+            "C:\\Users\\Suporte\\Desktop\\Spotify_Recomendacoes\\Spotify-Jovem-Programador\\SpotifyRecom.Data\\SpotifyRecom.Data.csproj": {
+              "projectPath": "C:\\Users\\Suporte\\Desktop\\Spotify_Recomendacoes\\Spotify-Jovem-Programador\\SpotifyRecom.Data\\SpotifyRecom.Data.csproj"
             },
-            "C:\\workplace\\Spotify_Recomendacoes\\Spotify-Jovem-Programador\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj": {
-              "projectPath": "C:\\workplace\\Spotify_Recomendacoes\\Spotify-Jovem-Programador\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj"
+            "C:\\Users\\Suporte\\Desktop\\Spotify_Recomendacoes\\Spotify-Jovem-Programador\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj": {
+              "projectPath": "C:\\Users\\Suporte\\Desktop\\Spotify_Recomendacoes\\Spotify-Jovem-Programador\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj"
             }
           }
         }

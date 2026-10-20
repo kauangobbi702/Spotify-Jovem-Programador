@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "IiyT/Bshit4=",
+  "dgSpecHash": "9r3fNLTBTwA=",
   "success": true,
-  "projectFilePath": "C:\\workplace\\Spotify_Recomendacoes\\Spotify-Jovem-Programador\\SpotifyRecom.Business\\SpotifyRecom.Business.csproj",
+  "projectFilePath": "C:\\Users\\Suporte\\Desktop\\Spotify_Recomendacoes\\Spotify-Jovem-Programador\\SpotifyRecom.Business\\SpotifyRecom.Business.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Suporte\\.nuget\\packages\\microsoft.entityframeworkcore\\9.0.0\\microsoft.entityframeworkcore.9.0.0.nupkg.sha512",
     "C:\\Users\\Suporte\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\9.0.0\\microsoft.entityframeworkcore.abstractions.9.0.0.nupkg.sha512",

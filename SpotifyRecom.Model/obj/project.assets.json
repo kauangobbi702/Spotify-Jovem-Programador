@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\workplace\\Spotify_Recomendacoes\\Spotify-Jovem-Programador\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj",
+      "projectUniqueName": "C:\\Users\\Suporte\\Desktop\\Spotify_Recomendacoes\\Spotify-Jovem-Programador\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj",
       "projectName": "SpotifyRecom.Model",
-      "projectPath": "C:\\workplace\\Spotify_Recomendacoes\\Spotify-Jovem-Programador\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj",
+      "projectPath": "C:\\Users\\Suporte\\Desktop\\Spotify_Recomendacoes\\Spotify-Jovem-Programador\\SpotifyRecom.Model\\SpotifyRecom.Model.csproj",
       "packagesPath": "C:\\Users\\Suporte\\.nuget\\packages\\",
-      "outputPath": "C:\\workplace\\Spotify_Recomendacoes\\Spotify-Jovem-Programador\\SpotifyRecom.Model\\obj\\",
+      "outputPath": "C:\\Users\\Suporte\\Desktop\\Spotify_Recomendacoes\\Spotify-Jovem-Programador\\SpotifyRecom.Model\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Suporte\\AppData\\Roaming\\NuGet\\NuGet.Config"

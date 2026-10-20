@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "U/V2a49po4g=",
+  "dgSpecHash": "sQYqb88IGnk=",
   "success": true,
-  "projectFilePath": "C:\\workplace\\Spotify_Recomendacoes\\Spotify-Jovem-Programador\\SpotifyRecom.ConsoleApp\\SpotifyRecom.ConsoleApp.csproj",
+  "projectFilePath": "C:\\Users\\Suporte\\Desktop\\Spotify_Recomendacoes\\Spotify-Jovem-Programador\\SpotifyRecom.ConsoleApp\\SpotifyRecom.ConsoleApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Suporte\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Suporte\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\7.0.0\\microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",

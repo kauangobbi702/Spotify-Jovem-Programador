@@ -10,6 +10,7 @@ C:\workplace\ProjetoSpotifeiLive\SpotifyRecom.Model\obj\Debug\net10.0\SpotifyRec
 C:\workplace\ProjetoSpotifeiLive\SpotifyRecom.Model\obj\Debug\net10.0\refint\SpotifyRecom.Model.dll
 C:\workplace\ProjetoSpotifeiLive\SpotifyRecom.Model\obj\Debug\net10.0\SpotifyRecom.Model.pdb
 C:\workplace\ProjetoSpotifeiLive\SpotifyRecom.Model\obj\Debug\net10.0\ref\SpotifyRecom.Model.dll
+<<<<<<< HEAD
 C:\workplace\Spotify_Recomendacoes\Spotify-Jovem-Programador\SpotifyRecom.Model\bin\Debug\net10.0\SpotifyRecom.Model.deps.json
 C:\workplace\Spotify_Recomendacoes\Spotify-Jovem-Programador\SpotifyRecom.Model\bin\Debug\net10.0\SpotifyRecom.Model.dll
 C:\workplace\Spotify_Recomendacoes\Spotify-Jovem-Programador\SpotifyRecom.Model\bin\Debug\net10.0\SpotifyRecom.Model.pdb
@@ -22,3 +23,29 @@ C:\workplace\Spotify_Recomendacoes\Spotify-Jovem-Programador\SpotifyRecom.Model\
 C:\workplace\Spotify_Recomendacoes\Spotify-Jovem-Programador\SpotifyRecom.Model\obj\Debug\net10.0\refint\SpotifyRecom.Model.dll
 C:\workplace\Spotify_Recomendacoes\Spotify-Jovem-Programador\SpotifyRecom.Model\obj\Debug\net10.0\SpotifyRecom.Model.pdb
 C:\workplace\Spotify_Recomendacoes\Spotify-Jovem-Programador\SpotifyRecom.Model\obj\Debug\net10.0\ref\SpotifyRecom.Model.dll
+=======
+C:\workplace\spotifei\Spotify-Jovem-Programador\SpotifyRecom.Model\bin\Debug\net10.0\SpotifyRecom.Model.deps.json
+C:\workplace\spotifei\Spotify-Jovem-Programador\SpotifyRecom.Model\bin\Debug\net10.0\SpotifyRecom.Model.dll
+C:\workplace\spotifei\Spotify-Jovem-Programador\SpotifyRecom.Model\bin\Debug\net10.0\SpotifyRecom.Model.pdb
+C:\workplace\spotifei\Spotify-Jovem-Programador\SpotifyRecom.Model\obj\Debug\net10.0\SpotifyRecom.Model.GeneratedMSBuildEditorConfig.editorconfig
+C:\workplace\spotifei\Spotify-Jovem-Programador\SpotifyRecom.Model\obj\Debug\net10.0\SpotifyRecom.Model.AssemblyInfoInputs.cache
+C:\workplace\spotifei\Spotify-Jovem-Programador\SpotifyRecom.Model\obj\Debug\net10.0\SpotifyRecom.Model.AssemblyInfo.cs
+C:\workplace\spotifei\Spotify-Jovem-Programador\SpotifyRecom.Model\obj\Debug\net10.0\SpotifyRecom.Model.csproj.CoreCompileInputs.cache
+C:\workplace\spotifei\Spotify-Jovem-Programador\SpotifyRecom.Model\obj\Debug\net10.0\SpotifyRecom.Model.sourcelink.json
+C:\workplace\spotifei\Spotify-Jovem-Programador\SpotifyRecom.Model\obj\Debug\net10.0\SpotifyRecom.Model.dll
+C:\workplace\spotifei\Spotify-Jovem-Programador\SpotifyRecom.Model\obj\Debug\net10.0\refint\SpotifyRecom.Model.dll
+C:\workplace\spotifei\Spotify-Jovem-Programador\SpotifyRecom.Model\obj\Debug\net10.0\SpotifyRecom.Model.pdb
+C:\workplace\spotifei\Spotify-Jovem-Programador\SpotifyRecom.Model\obj\Debug\net10.0\ref\SpotifyRecom.Model.dll
+>>>>>>> 9b663e8b9a1f274ea0683491fcbd5749d88eed58
+C:\Users\Suporte\Desktop\Spotify_Recomendacoes\Spotify-Jovem-Programador\SpotifyRecom.Model\bin\Debug\net10.0\SpotifyRecom.Model.deps.json
+C:\Users\Suporte\Desktop\Spotify_Recomendacoes\Spotify-Jovem-Programador\SpotifyRecom.Model\bin\Debug\net10.0\SpotifyRecom.Model.dll
+C:\Users\Suporte\Desktop\Spotify_Recomendacoes\Spotify-Jovem-Programador\SpotifyRecom.Model\bin\Debug\net10.0\SpotifyRecom.Model.pdb
+C:\Users\Suporte\Desktop\Spotify_Recomendacoes\Spotify-Jovem-Programador\SpotifyRecom.Model\obj\Debug\net10.0\SpotifyRecom.Model.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Suporte\Desktop\Spotify_Recomendacoes\Spotify-Jovem-Programador\SpotifyRecom.Model\obj\Debug\net10.0\SpotifyRecom.Model.AssemblyInfoInputs.cache
+C:\Users\Suporte\Desktop\Spotify_Recomendacoes\Spotify-Jovem-Programador\SpotifyRecom.Model\obj\Debug\net10.0\SpotifyRecom.Model.AssemblyInfo.cs
+C:\Users\Suporte\Desktop\Spotify_Recomendacoes\Spotify-Jovem-Programador\SpotifyRecom.Model\obj\Debug\net10.0\SpotifyRecom.Model.csproj.CoreCompileInputs.cache
+C:\Users\Suporte\Desktop\Spotify_Recomendacoes\Spotify-Jovem-Programador\SpotifyRecom.Model\obj\Debug\net10.0\SpotifyRecom.Model.sourcelink.json
+C:\Users\Suporte\Desktop\Spotify_Recomendacoes\Spotify-Jovem-Programador\SpotifyRecom.Model\obj\Debug\net10.0\SpotifyRecom.Model.dll
+C:\Users\Suporte\Desktop\Spotify_Recomendacoes\Spotify-Jovem-Programador\SpotifyRecom.Model\obj\Debug\net10.0\refint\SpotifyRecom.Model.dll
+C:\Users\Suporte\Desktop\Spotify_Recomendacoes\Spotify-Jovem-Programador\SpotifyRecom.Model\obj\Debug\net10.0\SpotifyRecom.Model.pdb
+C:\Users\Suporte\Desktop\Spotify_Recomendacoes\Spotify-Jovem-Programador\SpotifyRecom.Model\obj\Debug\net10.0\ref\SpotifyRecom.Model.dll

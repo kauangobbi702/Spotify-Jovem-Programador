@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\workplace\\Spotify_Recomendacoes\\Spotify-Jovem-Programador\\ProjetoSpotifeiLive.csproj": {}
+    "C:\\Users\\Suporte\\Desktop\\Spotify_Recomendacoes\\Spotify-Jovem-Programador\\ProjetoSpotifeiLive.csproj": {}
   },
   "projects": {
-    "C:\\workplace\\Spotify_Recomendacoes\\Spotify-Jovem-Programador\\ProjetoSpotifeiLive.csproj": {
+    "C:\\Users\\Suporte\\Desktop\\Spotify_Recomendacoes\\Spotify-Jovem-Programador\\ProjetoSpotifeiLive.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\workplace\\Spotify_Recomendacoes\\Spotify-Jovem-Programador\\ProjetoSpotifeiLive.csproj",
+        "projectUniqueName": "C:\\Users\\Suporte\\Desktop\\Spotify_Recomendacoes\\Spotify-Jovem-Programador\\ProjetoSpotifeiLive.csproj",
         "projectName": "ProjetoSpotifeiLive",
-        "projectPath": "C:\\workplace\\Spotify_Recomendacoes\\Spotify-Jovem-Programador\\ProjetoSpotifeiLive.csproj",
+        "projectPath": "C:\\Users\\Suporte\\Desktop\\Spotify_Recomendacoes\\Spotify-Jovem-Programador\\ProjetoSpotifeiLive.csproj",
         "packagesPath": "C:\\Users\\Suporte\\.nuget\\packages\\",
-        "outputPath": "C:\\workplace\\Spotify_Recomendacoes\\Spotify-Jovem-Programador\\obj\\",
+        "outputPath": "C:\\Users\\Suporte\\Desktop\\Spotify_Recomendacoes\\Spotify-Jovem-Programador\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Suporte\\AppData\\Roaming\\NuGet\\NuGet.Config"

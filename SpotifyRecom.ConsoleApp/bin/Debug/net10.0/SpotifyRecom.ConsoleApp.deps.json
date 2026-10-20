@@ -12,7 +12,8 @@
           "Microsoft.EntityFrameworkCore.Design": "9.0.0",
           "SpotifyRecom.Business": "1.0.0",
           "SpotifyRecom.Data": "1.0.0",
-          "SpotifyRecom.Model": "1.0.0"
+          "SpotifyRecom.Model": "1.0.0",
+          "SpotifyRecom.Service": "1.0.0"
         },
         "runtime": {
           "SpotifyRecom.ConsoleApp.dll": {}
@@ -609,6 +610,19 @@
             "fileVersion": "1.0.0.0"
           }
         }
+      },
+      "SpotifyRecom.Service/1.0.0": {
+        "dependencies": {
+          "SpotifyRecom.Business": "1.0.0",
+          "SpotifyRecom.Data": "1.0.0",
+          "SpotifyRecom.Model": "1.0.0"
+        },
+        "runtime": {
+          "SpotifyRecom.Service.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -853,6 +867,11 @@
       "sha512": ""
     },
     "SpotifyRecom.Model/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SpotifyRecom.Service/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

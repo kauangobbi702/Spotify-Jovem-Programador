@@ -17,6 +17,8 @@
     <Compile Remove="SpotifyRecom.Data\**" />
     <Compile Remove="SpotifyRecom.ConsoleApp\**" />
     <Compile Remove="SpotifyRecom.Business\**" />
+    <Compile Remove="SpotifyRecom.Service\**" />
+    <Compile Remove="SpotifyRecom.WebApi\**" />
   </ItemGroup>
 
 </Project>

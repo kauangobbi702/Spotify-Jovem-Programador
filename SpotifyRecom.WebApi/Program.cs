@@ -15,6 +15,7 @@ builder.Services.ConfigureHttpJsonOptions(options =>
     options.SerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
 });
 
+
 var signingKey = TokenService.GetSigningKey(builder.Configuration);
 
 builder.Services.AddAuthentication(options =>
@@ -43,10 +44,24 @@ var app = builder.Build();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapPost("/login/auth", ([FromBody] Usuario usuario) =>
+app.MapPost("/login/auth", ([FromBody] LoginRequest request) =>
 {
-   TokenService authService = new TokenService(builder.Configuration);
-   return authService.GenerateToken(usuario);
+    if (string.IsNullOrWhiteSpace(request.Email) || string.IsNullOrWhiteSpace(request.Senha))
+    {
+        return Results.BadRequest(new { mensagem = "Informe e-mail e senha." });
+    }
+
+    try
+    {
+        using var context = new SpotifyRecomContext();
+        var usuario = new UsuarioService(context).ValidarLogin(request.Email, request.Senha);
+        var token = new TokenService(builder.Configuration).GerarToken(usuario);
+        return Results.Ok(new { token });
+    }
+    catch (CredenciaisInvalidasException)
+    {
+        return Results.Unauthorized();
+    }
 });
 
 var curtidasPlaylistsUsuarioGroup = app.MapGroup("/usuario")

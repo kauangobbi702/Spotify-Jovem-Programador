@@ -1,5 +1,6 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Globalization;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -20,13 +21,7 @@ public class TokenService
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var chaveSecreta = GetSigningKey(_configuration);
-        var expirationSetting = _configuration["JWTSettings:ExpirationInMinutes"];
-        if (!double.TryParse(expirationSetting, out var expirationInMinutes) ||
-            expirationInMinutes <= 0)
-        {
-            throw new InvalidOperationException(
-                "JWTSettings:ExpirationInMinutes must be a positive number.");
-        }
+        var expiration = GetExpiration(_configuration);
 
         var credenciais = new SigningCredentials(chaveSecreta, SecurityAlgorithms.HmacSha256);
         var claims = new List<Claim>
@@ -39,7 +34,7 @@ public class TokenService
         {
             Subject = new ClaimsIdentity(claims),
             SigningCredentials = credenciais,
-            Expires = DateTime.UtcNow.AddMinutes(expirationInMinutes),
+            Expires = expiration,
         };
         var token = tokenHandler.CreateToken(tokenDescriptor);
         return tokenHandler.WriteToken(token);
@@ -62,5 +57,35 @@ public class TokenService
         }
 
         return new SymmetricSecurityKey(keyBytes);
+    }
+
+    private static DateTime GetExpiration(IConfiguration configuration)
+    {
+        var expirationInMinutes = configuration["JWTSettings:ExpirationInMinutes"];
+        if (double.TryParse(
+                expirationInMinutes,
+                NumberStyles.Float,
+                CultureInfo.InvariantCulture,
+                out var minutes) &&
+            double.IsFinite(minutes) &&
+            minutes > 0)
+        {
+            return DateTime.UtcNow.AddMinutes(minutes);
+        }
+
+        var expirationInHours = configuration["JWTSettings:ExpirationInHours"];
+        if (double.TryParse(
+                expirationInHours,
+                NumberStyles.Float,
+                CultureInfo.InvariantCulture,
+                out var hours) &&
+            double.IsFinite(hours) &&
+            hours > 0)
+        {
+            return DateTime.UtcNow.AddHours(hours);
+        }
+
+        throw new InvalidOperationException(
+            "Configure JWTSettings:ExpirationInMinutes or JWTSettings:ExpirationInHours with a positive number.");
     }
 }

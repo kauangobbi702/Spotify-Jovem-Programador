@@ -43,21 +43,10 @@ var app = builder.Build();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapPost("/login/auth", ([FromBody] LoginRequest request) =>
+app.MapPost("/login/auth", ([FromBody] Usuario usuario) =>
 {
-    using var context = new SpotifyRecomContext();
-    var usuarioService = new UsuarioService(context);
-
-    try
-    {
-        var usuario = usuarioService.ValidarLogin(request.Email, request.Senha);
-        var token = new TokenService(builder.Configuration).GenerateToken(usuario);
-        return Results.Ok(new { token });
-    }
-    catch (CredenciaisInvalidasException)
-    {
-        return Results.Unauthorized();
-    }
+   TokenService authService = new TokenService(builder.Configuration);
+   return authService.GenerateToken(usuario);
 });
 
 var curtidasPlaylistsUsuarioGroup = app.MapGroup("/usuario")

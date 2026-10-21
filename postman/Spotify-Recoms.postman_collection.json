@@ -1,0 +1,322 @@
+{
+  "info": {
+    "_postman_id": "459a55fc-76dd-4e8e-8618-3d067540d574",
+    "name": "Spotify Recoms",
+    "description": "Requests for the Spotify Recoms Web API. Run \"Autenticar usuario\" first to save a JWT token. The usuario routes below are protected and use the identity in that token; they do not accept a usuarioId query parameter.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "Autenticar usuario",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"{{email}}\",\n  \"senha\": \"{{senha}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/login/auth",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "login",
+            "auth"
+          ]
+        },
+        "auth": {
+          "type": "noauth"
+        },
+        "description": "Preencha as variaveis de collection email e senha com as credenciais de um usuario existente. A resposta 200 salva o JWT na variavel token."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Login retorna HTTP 200', function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "if (pm.response.code === 200) {",
+              "    const body = pm.response.json();",
+              "    const token = body.token;",
+              "    const partes = typeof token === 'string' ? token.split('.') : [];",
+              "",
+              "    pm.test('Resposta contem JWT com tres partes', function () {",
+              "        pm.expect(token).to.be.a('string').and.not.empty;",
+              "        pm.expect(partes).to.have.lengthOf(3);",
+              "    });",
+              "",
+              "    if (partes.length === 3) {",
+              "        try {",
+              "            const decodificar = (parte) => {",
+              "                const base64 = parte.replace(/-/g, '+').replace(/_/g, '/');",
+              "                return JSON.parse(atob(base64 + '='.repeat((4 - base64.length % 4) % 4)));",
+              "            };",
+              "            const cabecalho = decodificar(partes[0]);",
+              "            const claims = decodificar(partes[1]);",
+              "            const usuarioId = claims.nameid || claims.sub;",
+              "",
+              "            pm.test('JWT usa assinatura HS256', function () {",
+              "                pm.expect(cabecalho.alg).to.eql('HS256');",
+              "                pm.expect(cabecalho.typ).to.eql('JWT');",
+              "            });",
+              "            pm.test('JWT contem identidade do usuario', function () {",
+              "                pm.expect(usuarioId).to.be.ok;",
+              "                pm.expect(claims.unique_name || claims.name).to.be.a('string').and.not.empty;",
+              "                pm.expect(claims.email).to.be.a('string').and.not.empty;",
+              "            });",
+              "            pm.test('JWT ainda nao expirou', function () {",
+              "                pm.expect(claims.exp).to.be.a('number');",
+              "                pm.expect(claims.exp * 1000).to.be.above(Date.now());",
+              "            });",
+              "",
+              "            if (cabecalho.alg === 'HS256' && usuarioId && (claims.unique_name || claims.name) && claims.email &&",
+              "                claims.exp && claims.exp * 1000 > Date.now()) {",
+              "                pm.collectionVariables.set('token', token);",
+              "            }",
+              "        } catch (error) {",
+              "            pm.test('JWT pode ser decodificado', function () {",
+              "                throw error;",
+              "            });",
+              "        }",
+              "    }",
+              "}"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Artistas seguidos",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/usuario/spotify/artistas_seguidos",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "usuario",
+            "spotify",
+            "artistas_seguidos"
+          ]
+        },
+        "description": "Lista os artistas seguidos pelo usuario autenticado."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Retorna HTTP 200', function () { pm.response.to.have.status(200); });",
+              "pm.test('Resposta e uma lista JSON', function () { pm.expect(pm.response.json()).to.be.an('array'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Musicas curtidas",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/usuario/spotify/musicas_curtidas",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "usuario",
+            "spotify",
+            "musicas_curtidas"
+          ]
+        },
+        "description": "Lista as musicas curtidas pelo usuario autenticado."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Retorna HTTP 200', function () { pm.response.to.have.status(200); });",
+              "pm.test('Resposta e uma lista JSON', function () { pm.expect(pm.response.json()).to.be.an('array'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Playlists do usuario",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/usuario/spotify/playlists_usuario",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "usuario",
+            "spotify",
+            "playlists_usuario"
+          ]
+        },
+        "description": "Lista somente as playlists do usuario autenticado."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Retorna HTTP 200', function () { pm.response.to.have.status(200); });",
+              "pm.test('Resposta e uma lista JSON', function () { pm.expect(pm.response.json()).to.be.an('array'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Musicas da playlist",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/usuario/spotify/musicas_playlist?playlistId={{playlistId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "usuario",
+            "spotify",
+            "musicas_playlist"
+          ],
+          "query": [
+            {
+              "key": "playlistId",
+              "value": "{{playlistId}}"
+            }
+          ]
+        },
+        "description": "Lista as musicas de uma playlist pertencente ao usuario autenticado. Informe playlistId."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Retorna HTTP 200', function () { pm.response.to.have.status(200); });",
+              "pm.test('Resposta e uma lista JSON', function () { pm.expect(pm.response.json()).to.be.an('array'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Musicas por mood",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/usuario/spotify/musicas_mood?emocaoId={{emocaoId}}&atividadeId={{atividadeId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "usuario",
+            "spotify",
+            "musicas_mood"
+          ],
+          "query": [
+            {
+              "key": "emocaoId",
+              "value": "{{emocaoId}}"
+            },
+            {
+              "key": "atividadeId",
+              "value": "{{atividadeId}}"
+            }
+          ]
+        },
+        "description": "Recomenda musicas pela emocao e atividade selecionadas. Informe emocaoId e atividadeId."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Retorna HTTP 200', function () { pm.response.to.have.status(200); });",
+              "pm.test('Resposta e uma lista JSON', function () { pm.expect(pm.response.json()).to.be.an('array'); });"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5184",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "email",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "senha",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "playlistId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "emocaoId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "atividadeId",
+      "value": "1",
+      "type": "string"
+    }
+  ]
+}
